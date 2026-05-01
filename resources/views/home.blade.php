@@ -107,7 +107,7 @@
                             </tr>
                         </thead>
 
-                        //Recorre los equipos recibidos desde HomeController y los muestra en la tabla
+                        <!-- Recorre los equipos recibidos desde HomeController y los muestra en la tabla -->
                         <tbody>
                             @forelse($equipos as $equipo)
                             <tr class="border-b border-white/20">

@@ -13,8 +13,7 @@ class HomeController extends Controller
     public function index()
     {
         $equipos = Equipo::with('categoria')
-            //Solo muestra equipo activo
-            ->where('activo', true)
+            ->where('activo', true) //Solo muestra equipo activo
             ->orderBy('nombre')
             ->get();
 

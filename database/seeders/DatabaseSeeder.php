@@ -21,5 +21,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        //Ejecuta el seeder de categoria para llenar la tabla 
+        $this->call([
+            CategoriaSeeder::class,
+        ]);
     }
 }
