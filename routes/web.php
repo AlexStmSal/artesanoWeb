@@ -7,3 +7,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+
+//Controladores
+Route::get('/', [HomeController::class, 'index'])->name('home');
