@@ -17,6 +17,7 @@ class Equipo extends Model
         'activo',
     ];
 
+    //Relación N:1 (Cada equipo pertenece a una categoria)
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);

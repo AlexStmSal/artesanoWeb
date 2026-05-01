@@ -107,13 +107,30 @@
                             </tr>
                         </thead>
 
+                        //Recorre los equipos recibidos desde HomeController y los muestra en la tabla
                         <tbody>
+                            @forelse($equipos as $equipo)
                             <tr class="border-b border-white/20">
-                                <td class="py-3">Mic</td>
-                                <td class="py-3">C214</td>
-                                <td class="py-3">AKG</td>
-                                <td class="py-3">1</td>
+                                <td class="py-3">
+                                    {{ $equipo->categoria->nombre ?? 'Sin categoría' }}
+                                </td>
+                                <td class="py-3">
+                                    {{ $equipo->nombre }}
+                                </td>
+                                <td class="py-3">
+                                    {{ $equipo->marca }}
+                                </td>
+                                <td class="py-3">
+                                    {{ $equipo->cantidad }}
+                                </td>
                             </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="py-6 text-center text-[#e4e2dd]">
+                                    No hay equipos disponibles.
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

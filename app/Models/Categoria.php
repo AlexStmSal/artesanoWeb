@@ -11,6 +11,8 @@ class Categoria extends Model
         'slug',
     ];
 
+
+    //Relación 1:N
     public function equipos()
     {
         return $this->hasMany(Equipo::class);

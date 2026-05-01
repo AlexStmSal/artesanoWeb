@@ -7,9 +7,13 @@ use App\Models\Equipo;
 
 class HomeController extends Controller
 {
+    /**
+     * Recupera los equipos de la BD junto a su categoria
+     */
     public function index()
     {
         $equipos = Equipo::with('categoria')
+            //Solo muestra equipo activo
             ->where('activo', true)
             ->orderBy('nombre')
             ->get();
