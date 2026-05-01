@@ -22,9 +22,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        //Ejecuta el seeder de categoria para llenar la tabla 
+        //Ejecuta los seeders en orden
         $this->call([
             CategoriaSeeder::class,
+            EquipoSeeder::class,
         ]);
     }
 }

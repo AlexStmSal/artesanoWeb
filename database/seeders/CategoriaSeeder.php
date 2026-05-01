@@ -28,6 +28,7 @@ class CategoriaSeeder extends Seeder
             'Otros',
         ];
 
+        //Recorre cada categoría y se inserta en la BD
         foreach ($categorias as $categoria) {
             //Crea un registro en la tabla 'categorias'
             Categoria::create([
