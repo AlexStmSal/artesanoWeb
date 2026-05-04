@@ -12,9 +12,9 @@
 <body class="bg-[#8f896c] text-white font-sans">
 
     <header class="fixed top-0 left-0 w-full z-50 bg-[#8f896c]/90 backdrop-blur">
+        <!-- NAVEGADOR -->
         <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between uppercase text-sm tracking-widest">
             <a href="#inicio" class="font-bold">Artesano Studio</a>
-
             <div class="flex gap-8">
                 <a href="#inicio" class="hover:text-[#e4e2dd]">Home</a>
                 <a href="#trabajos" class="hover:text-[#e4e2dd]">Trabajos</a>
@@ -28,6 +28,7 @@
 
     <main>
 
+        <!-- HOME -->
         <section id="inicio" class="min-h-screen pt-28 px-6 flex items-center">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="bg-[#e4e2dd] h-[500px] rounded-lg"></div>
@@ -44,18 +45,44 @@
             </div>
         </section>
 
+
+        <!-- TRABAJOS -->
         <section id="trabajos" class="min-h-screen pt-28 px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl uppercase mb-10">Trabajos</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-[#e4e2dd] text-black h-52 rounded-lg flex items-center justify-center">Video</div>
-                    <div class="bg-[#e4e2dd] text-black h-52 rounded-lg flex items-center justify-center">Video</div>
-                    <div class="bg-[#e4e2dd] text-black h-52 rounded-lg flex items-center justify-center">Video</div>
+                    @forelse($trabajos as $trabajo)
+                    <article class="bg-white/20 rounded-lg overflow-hidden">
+                        <iframe
+                            src="{{ $trabajo->url_video }}"
+                            title="{{ $trabajo->titulo }}"
+                            class="w-full h-52"
+                            allowfullscreen>
+                        </iframe>
+
+                        <div class="p-5">
+                            <h3 class="uppercase text-xl mb-3">
+                                {{ $trabajo->titulo }}
+                            </h3>
+
+                            @if($trabajo->descripcion)
+                            <p class="text-[#e4e2dd]">
+                                {{ $trabajo->descripcion }}
+                            </p>
+                            @endif
+                        </div>
+                    </article>
+                    @empty
+                    <p class="text-[#e4e2dd]">
+                        No hay trabajos disponibles.
+                    </p>
+                    @endforelse
                 </div>
             </div>
         </section>
 
+        <!-- SERVICIOS -->
         <section id="servicios" class="min-h-screen pt-28 px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl uppercase mb-10">Servicios</h2>
@@ -79,6 +106,7 @@
             </div>
         </section>
 
+        <!-- EL ESTUDIO -->
         <section id="estudio" class="min-h-screen pt-28 px-6">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -92,6 +120,7 @@
             </div>
         </section>
 
+        <!-- EQUIPO -->
         <section id="equipo" class="min-h-screen pt-28 px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl uppercase mb-10">Equipo</h2>
@@ -137,24 +166,70 @@
             </div>
         </section>
 
+        <!-- CONTACTO -->
         <section id="contacto" class="min-h-screen pt-28 px-6 flex items-center">
             <div class="max-w-7xl mx-auto w-full">
                 <h2 class="text-4xl uppercase mb-10">Contacto</h2>
 
-                <form action="#" method="POST" class="max-w-md mx-auto bg-white/20 p-8 rounded-lg">
+                <!-- Mostrar mensaje de éxito cuando el form se envió correctamente -->
+                @if(session('success'))
+                <div class="max-w-md mx-auto mb-6 bg-white text-[#8f896c] px-4 py-3 rounded">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                <!-- Mostrar aviso general en caso de error -->
+                @if($errors->any())
+                <div class="max-w-md mx-auto mb-6 bg-red-100 text-red-700 px-4 py-3 rounded">
+                    Revisa los campos del formulario.
+                </div>
+                @endif
+
+                <form action="{{ route('contacto.store') }}" method="POST" class="max-w-md mx-auto bg-white/20 p-8 rounded-lg">
                     @csrf
 
-                    <input type="text" name="nombre" placeholder="Nombre y apellidos"
-                        class="w-full mb-4 bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
+                    <!-- Nombre y apellidos -->
+                    <div class="mb-4">
+                        <input type="text" name="nombre" placeholder="Nombre y apellidos"
+                            value="{{ old('nombre') }}"
+                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none ">
 
-                    <input type="email" name="email" placeholder="Correo electrónico"
-                        class="w-full mb-4 bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
+                        @error('nombre')
+                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                    <input type="text" name="asunto" placeholder="Asunto"
-                        class="w-full mb-4 bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <input type="email" name="email" placeholder="Correo electrónico"
+                            value="{{ old('email') }}"
+                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
 
-                    <textarea name="mensaje" placeholder="Mensaje"
-                        class="w-full mb-6 bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none"></textarea>
+                        @error('email')
+                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Asunto -->
+                    <div class="mb-4">
+                        <input type="text" name="asunto" placeholder="Asunto"
+                            value="{{ old('asunto') }}"
+                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
+
+                        @error('asunto')
+                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div class="mb-6">
+                        <textarea name="mensaje" placeholder="Mensaje"
+                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">{{ old('mensaje') }}</textarea>
+
+                        @error('mensaje')
+                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <button type="submit" class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[#8f896c] transition">
                         Enviar
