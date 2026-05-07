@@ -32,6 +32,17 @@
                 <a href="{{ route('home') }}" class="hover:text-[var(--secundario)]">
                     Ver web
                 </a>
+                <!-- Logout -->
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+
+                    <button type="submit" class="hover:text-[var(--secundario)] uppercase tracking-widest">
+                        Cerrar sesión
+                    </button>
+                </form>
+
+
+
 
             </div>
         </nav>
