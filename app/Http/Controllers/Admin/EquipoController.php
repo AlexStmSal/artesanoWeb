@@ -104,7 +104,7 @@ class EquipoController extends Controller
     }
 
     /**
-     * ACtualizar equipo
+     * Guardar los cambios en la BD
      */
     public function update(Request $request, Equipo $equipo)
     {
