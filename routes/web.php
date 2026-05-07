@@ -5,21 +5,17 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\Admin\EquipoController;
 use App\Http\Controllers\Admin\TrabajoController;
+use App\Http\Controllers\Admin\MensajeContactoController;
 
 //Ruta principal
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-
-
-//Controladores
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-//Mensaje contacto
+//Formulario de contacto
 Route::post('/contacto', [ContactoController::class, 'store'])->name('contacto.store');
 
 //Panel de administración
 Route::prefix('admin')->name('admin.')->group(function () {
+
     //Admin de Equipo
     Route::get('/equipos', [EquipoController::class, 'index'])->name('equipos.index');
     Route::get('/equipos/crear', [EquipoController::class, 'create'])->name('equipos.create');
@@ -35,4 +31,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/trabajos/{trabajo}/editar', [TrabajoController::class, 'edit'])->name('trabajos.edit');
     Route::put('/trabajos/{trabajo}', [TrabajoController::class, 'update'])->name('trabajos.update');
     Route::delete('/trabajos/{trabajo}', [TrabajoController::class, 'destroy'])->name('trabajos.destroy');
+
+    //Admin de Mensajes de Contacto
+    Route::get('/mensajes', [MensajeContactoController::class, 'index'])->name('mensajes.index');
+    Route::delete('/mensajes/{mensaje}', [MensajeContactoController::class, 'destroy'])->name('mensajes.destroy');
 });

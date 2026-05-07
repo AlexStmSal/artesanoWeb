@@ -16,15 +16,19 @@
             </a>
 
             <div class="flex gap-6 uppercase text-sm tracking-widest">
-                <!-- Hacia equipos -->
+                <!-- Equipos -->
                 <a href="{{ route('admin.equipos.index') }}" class="hover:text-[var(--secundario)]">
                     Equipos
                 </a>
-                <!-- Hacia trabajos -->
+                <!-- Trabajos -->
                 <a href="{{ route('admin.trabajos.index') }}" class="hover:text-[var(--secundario)]">
                     Trabajos
                 </a>
-                <!-- Hacia web -->
+                <!-- Mensajes -->
+                <a href="{{ route('admin.mensajes.index') }}" class="hover:text-[var(--secundario)]">
+                    Mensajes
+                </a>
+                <!-- Ver web -->
                 <a href="{{ route('home') }}" class="hover:text-[var(--secundario)]">
                     Ver web
                 </a>
