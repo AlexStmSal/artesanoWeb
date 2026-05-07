@@ -24,7 +24,7 @@ Route::get('/dashboard', function () {
 //Panel de administración protegido con login
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
-    // Entrada principal del panel de administración
+    //Entrada principal del panel de administración
     Route::get('/', function () {
         return redirect()->route('admin.equipos.index');
     })->name('dashboard');
