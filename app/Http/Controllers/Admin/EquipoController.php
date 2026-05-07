@@ -50,7 +50,14 @@ class EquipoController extends Controller
     /**
      * Formulario de creación de equipo
      */
-    public function create() {}
+    public function create()
+    {
+        //Obtener categorias 
+        $categorias = Categoria::orderBy('nombre')->get();
+
+        //Mostrar form de creación de equipos
+        return view('admin.equipos.create', compact('categorias'));
+    }
 
     /**
      * Guardar equipo nuevo
