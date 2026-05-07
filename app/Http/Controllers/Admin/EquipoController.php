@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Models\Categoria;
 use App\Models\Equipo;
 
 class EquipoController extends Controller
@@ -62,7 +62,33 @@ class EquipoController extends Controller
     /**
      * Guardar equipo nuevo
      */
-    public function store() {}
+    public function store(Request $request)
+    {
+
+        //Validar datos enviados desde el formulario
+        $datos = $request->validate([
+
+            'categoria_id' => 'required|exists:categorias,id',
+            'nombre' => 'required|string|max:150',
+            'marca' => 'required|string|max:100',
+            'modelo' => 'nullable|string|max:100',
+            'cantidad' => 'required|integer|min:1',
+            'descripcion' => 'nullable|string',
+            'activo' => 'nullable|boolean',
+        ]);
+
+        //Si el checkbox no se marca, no llega en el request
+        //Si llega el request, equipo activo, si no llega, inactivo
+        $datos['activo'] = $request->has('activo');
+
+        //Crear nuevo equipo
+        Equipo::create($datos);
+
+        //Redirigir a panel de equipos con mensaje de confirmación
+        return redirect()
+            ->route('admin.equipos.index')
+            ->with('success', 'Equipo añadido correctamente.');
+    }
 
     /**
      * Mostrar formulario de edición

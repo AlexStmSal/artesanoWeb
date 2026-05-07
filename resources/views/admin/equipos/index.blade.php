@@ -4,6 +4,13 @@
 
 <h1 class="text-4xl uppercase mb-8">Administrar equipos</h1>
 
+<!-- Mensajes de confirmación -->
+@if(session('success'))
+<div class="mb-6 bg-white text-[var(--principal)] px-4 py-3 rounded">
+    {{ session('success') }}
+</div>
+@endif
+
 <form method="GET" action="{{ route('admin.equipos.index') }}" class="bg-white/20 p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-4 gap-4">
 
     <!-- Filtro de texto -->
