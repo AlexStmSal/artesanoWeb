@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1 class="text-4xl uppercase mb-8">Añadir equipo</h1>
+<h1 class="text-4xl uppercase mb-8">Editar equipo</h1>
 
 <a href="{{ route('admin.equipos.index') }}" class="inline-block mb-6 underline">
     Volver al listado
@@ -14,10 +14,11 @@
 </div>
 @endif
 
-<form action="{{ route('admin.equipos.store') }}" method="POST" class="bg-white/20 p-8 rounded-lg max-w-xl mx-auto">
+<form action="{{ route('admin.equipos.update', $equipo) }}" method="POST" class="bg-white/20 p-8 rounded-lg max-w-xl mx-auto">
     @csrf
+    @method('PUT')
 
-    <!-- CATEGORIA -->
+    <!-- CATEGORÍA -->
     <div class="mb-4">
         <label for="categoria_id" class="block mb-2 uppercase text-sm">Categoría</label>
 
@@ -26,19 +27,16 @@
             <option value="" class="text-black">Selecciona una categoría</option>
 
             @foreach($categorias as $categoria)
-            <option value="{{ $categoria->id }}"
-                class="text-black"
-                @selected(old('categoria_id')==$categoria->id)>
+            <option value="{{ $categoria->id }}" class="text-black"
+                @selected(old('categoria_id', $equipo->categoria_id) == $categoria->id)>
                 {{ $categoria->nombre }}
             </option>
             @endforeach
         </select>
 
         @error('categoria_id')
-
         <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
         @enderror
-
     </div>
 
     <!-- NOMBRE -->
@@ -46,13 +44,12 @@
         <label for="nombre" class="block mb-2 uppercase text-sm">Nombre</label>
 
         <input type="text" name="nombre" id="nombre"
-            value="{{ old('nombre') }}"
+            value="{{ old('nombre', $equipo->nombre) }}"
             class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">
 
         @error('nombre')
         <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
         @enderror
-
     </div>
 
     <!-- MARCA -->
@@ -60,30 +57,25 @@
         <label for="marca" class="block mb-2 uppercase text-sm">Marca</label>
 
         <input type="text" name="marca" id="marca"
-            value="{{ old('marca') }}"
+            value="{{ old('marca', $equipo->marca) }}"
             class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">
 
         @error('marca')
         <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
-
         @enderror
-
     </div>
-
 
     <!-- MODELO -->
     <div class="mb-4">
         <label for="modelo" class="block mb-2 uppercase text-sm">Modelo</label>
 
         <input type="text" name="modelo" id="modelo"
-            value="{{ old('modelo') }}"
+            value="{{ old('modelo', $equipo->modelo) }}"
             class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">
 
         @error('modelo')
-
         <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
         @enderror
-
     </div>
 
     <!-- CANTIDAD -->
@@ -91,14 +83,12 @@
         <label for="cantidad" class="block mb-2 uppercase text-sm">Cantidad</label>
 
         <input type="number" name="cantidad" id="cantidad"
-            value="{{ old('cantidad', 1) }}"
+            value="{{ old('cantidad', $equipo->cantidad) }}"
             min="1"
             class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">
 
         @error('cantidad')
-
         <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
-
         @enderror
     </div>
 
@@ -107,7 +97,7 @@
         <label for="descripcion" class="block mb-2 uppercase text-sm">Descripción</label>
 
         <textarea name="descripcion" id="descripcion"
-            class="w-full min-h-32 px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">{{ old('descripcion') }}</textarea>
+            class="w-full min-h-32 px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">{{ old('descripcion', $equipo->descripcion) }}</textarea>
 
         @error('descripcion')
         <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
@@ -117,15 +107,14 @@
     <!-- ESTADO -->
     <div class="mb-6">
         <label class="flex items-center gap-2">
-            <input type="checkbox" name="activo" value="1" checked>
-
+            <input type="checkbox" name="activo" value="1"
+                @checked(old('activo', $equipo->activo))>
             <span>Mostrar equipo en la web</span>
-
         </label>
     </div>
 
     <button type="submit" class="border border-white px-6 py-3 uppercase hover:bg-white hover:text-[var(--principal)] transition">
-        Guardar equipo
+        Guardar cambios
     </button>
 </form>
 

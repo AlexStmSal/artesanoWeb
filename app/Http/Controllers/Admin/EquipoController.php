@@ -93,15 +93,56 @@ class EquipoController extends Controller
     /**
      * Mostrar formulario de edición
      */
-    public function edit() {}
+    public function edit(Equipo $equipo)
+    {
+
+        //Obtener categorías para mostrar en el formulario
+        $categorias = Categoria::orderBy('nombre')->get();
+
+        //Mostrar formulario con el equipo seleccionado
+        return view('admin.equipos.edit', compact('equipo', 'categorias'));
+    }
 
     /**
      * ACtualizar equipo
      */
-    public function update() {}
+    public function update(Request $request, Equipo $equipo)
+    {
+        //Validar datos desde el form de edición
+        $datos = $request->validate([
+            'categoria_id' => 'required|exists:categorias,id',
+            'nombre' => 'required|string|max:150',
+            'marca' => 'required|string|max:100',
+            'modelo' => 'nullable|string|max:100',
+            'cantidad' => 'required|integer|min:1',
+            'descripcion' => 'nullable|string',
+            'activo' => 'nullable|boolean',
+        ]);
+
+        //El checkbox solo llega si está marcado
+        //Si no llega, equipo inactivo
+        $datos['activo'] = $request->has('activo');
+
+        //Actualizar datos
+        $equipo->update($datos);
+
+        //Redirección con confirmación
+        return redirect()
+            ->route('admin.equipos.index')
+            ->with('success', 'Equipo actualizado correctamente.');
+    }
 
     /**
      * Eliminar equipo
      */
-    public function destroy() {}
+    public function destroy(Equipo $equipo)
+    {
+        //Eliminar equipo
+        $equipo->delete();
+
+        //Redirigir con mensaje de confirmación
+        return redirect()
+            ->route('admin.equipos.index')
+            ->with('success', 'Equipo eliminado correctamente.');
+    }
 }

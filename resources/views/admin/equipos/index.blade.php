@@ -52,6 +52,7 @@
 <div class="overflow-x-auto bg-white/10 rounded-lg">
     <table class="w-full text-left">
         <thead>
+
             <tr class="border-b border-white/40 uppercase">
                 <th class="p-4">Categoría</th>
                 <th class="p-4">Nombre</th>
@@ -64,6 +65,7 @@
         </thead>
 
         <tbody>
+
             @forelse($equipos as $equipo)
             <tr class="border-b border-white/20">
                 <td class="p-4">{{ $equipo->categoria->nombre ?? 'Sin categoría' }}</td>
@@ -74,11 +76,26 @@
                 <td class="p-4">
                     {{ $equipo->activo ? 'Activo' : 'Inactivo' }}
                 </td>
-                <!-- Btn Acciones -->
+                <!-- BTN Editar -->
                 <td class="p-4">
                     <a href="{{ route('admin.equipos.edit', $equipo) }}" class="underline">
                         Editar
                     </a>
+
+                    <!-- BTN Eliminar -->
+                    <form action="{{ route('admin.equipos.destroy', $equipo) }}" method="POST"
+                        onsubmit="return confirm('¿Seguro que quieres eliminar este equipo?');">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="underline text-red-100">
+                            Eliminar
+                        </button>
+                    </form>
+
+
+
+
                 </td>
             </tr>
             @empty
