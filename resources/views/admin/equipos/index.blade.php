@@ -29,14 +29,14 @@
         <option value="0" @selected(request('activo')==='0' )>Inactivo</option>
     </select>
 
-    <button type="submit" class="border border-white py-2 uppercase hover:bg-white hover:text-[#8f896c] transition">
+    <button type="submit" class="border border-white py-2 uppercase hover:bg-white hover:text-[var(--principal)] transition">
         Filtrar
     </button>
 </form>
 
 <!-- Nuevo equipo -->
 <div class="mb-6">
-    <a href="{{ route('admin.equipos.create') }}" class="inline-block border border-white px-4 py-2 uppercase hover:bg-white hover:text-[#8f896c] transition">
+    <a href="{{ route('admin.equipos.create') }}" class="inline-block border border-white px-4 py-2 uppercase hover:bg-white hover:text-[var(--principal)] transition">
         Añadir equipo
     </a>
 </div>
@@ -76,7 +76,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7" class="p-6 text-center text-[#e4e2dd]">
+                <td colspan="7" class="p-6 text-center text-[var(--secundario)]">
                     No hay equipos que coincidan con los filtros.
                 </td>
             </tr>

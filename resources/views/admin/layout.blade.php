@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#8f896c] text-white min-h-screen">
+<body class="bg-[var(--principal)] text-white min-h-screen">
 
     <header class="bg-white/10 border-b border-white/20">
         <!-- Navegador Admin -->
@@ -17,11 +17,11 @@
             </a>
 
             <div class="flex gap-6 uppercase text-sm tracking-widest">
-                <a href="{{ route('admin.equipos.index') }}" class="hover:text-[#e4e2dd]">
+                <a href="{{ route('admin.equipos.index') }}" class="hover:text-[var(--secundario)]">
                     Equipos
                 </a>
 
-                <a href="{{ route('home') }}" class="hover:text-[#e4e2dd]">
+                <a href="{{ route('home') }}" class="hover:text-[var(--secundario)]">
                     Ver web
                 </a>
             </div>

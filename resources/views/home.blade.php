@@ -9,19 +9,19 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#8f896c] text-white font-sans">
+<body class="bg-[var(--principal)] text-white font-sans">
 
-    <header class="fixed top-0 left-0 w-full z-50 bg-[#8f896c]/90 backdrop-blur">
+    <header class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/90 backdrop-blur">
         <!-- NAVEGADOR -->
         <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between uppercase text-sm tracking-widest">
             <a href="#inicio" class="font-bold">Artesano Studio</a>
             <div class="flex gap-8">
-                <a href="#inicio" class="hover:text-[#e4e2dd]">Home</a>
-                <a href="#trabajos" class="hover:text-[#e4e2dd]">Trabajos</a>
-                <a href="#servicios" class="hover:text-[#e4e2dd]">Servicios</a>
-                <a href="#estudio" class="hover:text-[#e4e2dd]">El estudio</a>
-                <a href="#equipo" class="hover:text-[#e4e2dd]">Equipo</a>
-                <a href="#contacto" class="hover:text-[#e4e2dd]">Contacto</a>
+                <a href="#inicio" class="hover:text-[var(--secundario)]">Home</a>
+                <a href="#trabajos" class="hover:text-[var(--secundario)]">Trabajos</a>
+                <a href="#servicios" class="hover:text-[var(--secundario)]">Servicios</a>
+                <a href="#estudio" class="hover:text-[var(--secundario)]">El estudio</a>
+                <a href="#equipo" class="hover:text-[var(--secundario)]">Equipo</a>
+                <a href="#contacto" class="hover:text-[var(--secundario)]">Contacto</a>
             </div>
         </nav>
     </header>
@@ -31,14 +31,14 @@
         <!-- HOME -->
         <section id="inicio" class="min-h-screen pt-28 px-6 flex items-center">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="bg-[#e4e2dd] h-[500px] rounded-lg"></div>
+                <div class="bg-[var(--secundario)] h-[500px] rounded-lg"></div>
 
                 <div>
                     <h1 class="text-5xl md:text-7xl uppercase mb-8">
                         Where silence speaks,<br>Artesano thinks
                     </h1>
 
-                    <p class="max-w-md leading-relaxed text-[#e4e2dd]">
+                    <p class="max-w-md leading-relaxed text-[var(--secundario)]">
                         Artesano Studio es un estudio creativo que trabaja desde la observación y el detalle.
                     </p>
                 </div>
@@ -67,14 +67,14 @@
                             </h3>
 
                             @if($trabajo->descripcion)
-                            <p class="text-[#e4e2dd]">
+                            <p class="text-[var(--secundario)]">
                                 {{ $trabajo->descripcion }}
                             </p>
                             @endif
                         </div>
                     </article>
                     @empty
-                    <p class="text-[#e4e2dd]">
+                    <p class="text-[var(--secundario)]">
                         No hay trabajos disponibles.
                     </p>
                     @endforelse
@@ -90,17 +90,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <article class="bg-white/20 p-8 rounded-lg">
                         <h3 class="uppercase text-xl mb-4">Filmmaking</h3>
-                        <p class="text-[#e4e2dd]">Producción audiovisual y creación de contenido visual.</p>
+                        <p class="text-[var(--secundario)]">Producción audiovisual y creación de contenido visual.</p>
                     </article>
 
                     <article class="bg-white/20 p-8 rounded-lg">
                         <h3 class="uppercase text-xl mb-4">Fotografía</h3>
-                        <p class="text-[#e4e2dd]">Trabajo visual centrado en composición, detalle e identidad.</p>
+                        <p class="text-[var(--secundario)]">Trabajo visual centrado en composición, detalle e identidad.</p>
                     </article>
 
                     <article class="bg-white/20 p-8 rounded-lg">
                         <h3 class="uppercase text-xl mb-4">Web Design</h3>
-                        <p class="text-[#e4e2dd]">Diseño y desarrollo de experiencias web creativas.</p>
+                        <p class="text-[var(--secundario)]">Diseño y desarrollo de experiencias web creativas.</p>
                     </article>
                 </div>
             </div>
@@ -111,12 +111,12 @@
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-4xl uppercase mb-8">El estudio</h2>
-                    <p class="text-[#e4e2dd] leading-relaxed">
+                    <p class="text-[var(--secundario)] leading-relaxed">
                         Espacio de trabajo donde se desarrollan proyectos audiovisuales, musicales y digitales.
                     </p>
                 </div>
 
-                <div class="bg-[#e4e2dd] h-[400px] rounded-lg"></div>
+                <div class="bg-[var(--secundario)] h-[400px] rounded-lg"></div>
             </div>
         </section>
 
@@ -155,7 +155,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="4" class="py-6 text-center text-[#e4e2dd]">
+                                <td colspan="4" class="py-6 text-center text-[var(--secundario)]">
                                     No hay equipos disponibles.
                                 </td>
                             </tr>
@@ -173,7 +173,7 @@
 
                 <!-- Mostrar mensaje de éxito cuando el form se envió correctamente -->
                 @if(session('success'))
-                <div class="max-w-md mx-auto mb-6 bg-white text-[#8f896c] px-4 py-3 rounded">
+                <div class="max-w-md mx-auto mb-6 bg-white text-[var(--principal)] px-4 py-3 rounded">
                     {{ session('success') }}
                 </div>
                 @endif
@@ -231,7 +231,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[#8f896c] transition">
+                    <button type="submit" class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[var(--principal)] transition">
                         Enviar
                     </button>
                 </form>
