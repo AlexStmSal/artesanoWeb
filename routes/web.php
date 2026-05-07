@@ -19,8 +19,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
 //Panel de administración protegido con login
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+
+    // Entrada principal del panel de administración
+    Route::get('/', function () {
+        return redirect()->route('admin.equipos.index');
+    })->name('dashboard');
 
     // Administración de equipos
     Route::get('/equipos', [EquipoController::class, 'index'])->name('equipos.index');
