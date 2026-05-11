@@ -240,6 +240,43 @@
 
     </main>
 
+
+    <!-- FOOTER -->
+    <footer class="px-6 py-10 border-t border-white/20 bg-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+            <div class="text-center md:text-left">
+                <p class="uppercase tracking-widest font-bold">
+                    Artesano Studio
+                </p>
+
+                <p class="text-sm text-[var(--secundario)] mt-2">
+                    Filmmaking, diseño web y producción creativa.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 uppercase text-sm tracking-widest">
+                <a href="mailto:contacto@artesanostudio.com" class="hover:text-[var(--secundario)]">
+                    Email
+                </a>
+
+                <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--secundario)]">
+                    WhatsApp
+                </a>
+
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--secundario)]">
+                    Instagram
+                </a>
+
+            </div>
+
+            <div class="text-sm text-[var(--secundario)] text-center md:text-right">
+                © {{ date('Y') }} Artesano Studio
+            </div>
+
+        </div>
+    </footer>
+
 </body>
 
 </html>
