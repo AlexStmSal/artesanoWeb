@@ -125,6 +125,30 @@
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl uppercase mb-10">Equipo</h2>
 
+                <!-- Filtros públicos -->
+                <form method="GET" action="{{ route('home') }}#equipo" class="bg-white/20 p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                    <input type="text" name="buscar_equipo" placeholder="Buscar equipo, marca o modelo"
+                        value="{{ request('buscar_equipo') }}"
+                        class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">
+
+                    <select name="categoria_id"
+                        class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white focus:outline-none focus:border-white">
+                        <option value="" class="text-black">Todas las categorías</option>
+
+                        @foreach($categorias as $categoria)
+                        <option value="{{ $categoria->id }}" class="text-black" @selected(request('categoria_id')==$categoria->id)>
+                            {{ $categoria->nombre }}
+                        </option>
+                        @endforeach
+
+                    </select>
+
+                    <button type="submit" class="border border-white py-2 uppercase hover:bg-white hover:text-[var(--principal)] transition">
+                        Filtrar
+                    </button>
+                </form>
+
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
