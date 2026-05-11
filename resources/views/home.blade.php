@@ -185,7 +185,12 @@
                             </tr>
                             @endforelse
                         </tbody>
+
                     </table>
+                    <!-- Paginación (máximo 10 items) -->
+                    <div class="mt-6">
+                        {{ $equipos->fragment('equipo')->links() }}
+                    </div>
                 </div>
             </div>
         </section>

@@ -18,11 +18,12 @@ class CategoriaSeeder extends Seeder
         $categorias = [
             'Drones',
             'Monitores',
+            'Micrófonos',
             'Instrumentos',
             'Pedales',
             'Luces',
             'Lentes',
-            'Camaras',
+            'Cámaras',
             'Amplificadores',
             'Interfaces',
             'Otros',
@@ -30,11 +31,12 @@ class CategoriaSeeder extends Seeder
 
         //Recorre cada categoría y se inserta en la BD
         foreach ($categorias as $categoria) {
-            //Crea un registro en la tabla 'categorias'
-            Categoria::create([
-                'nombre' => $categoria,
-                'slug' => Str::slug($categoria),
-            ]);
+            //Busca primero un registro con ese slug
+            //Crea la categoría si no existe o actualiza el nombre ya existe
+            Categoria::updateOrCreate(
+                ['slug' => Str::slug($categoria)],
+                ['nombre' => $categoria]
+            );
         }
     }
 }

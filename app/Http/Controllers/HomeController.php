@@ -35,9 +35,12 @@ class HomeController extends Controller
             $queryEquipos->where('categoria_id', $request->categoria_id);
         }
 
+        //Ejecutar la consulta final mostrando solo 10 equipos por página
+        //Appends mantiene los filtros activos al cambiar de página
         $equipos = $queryEquipos
             ->orderBy('nombre')
-            ->get();
+            ->paginate(10)
+            ->appends($request->query());
 
         //Obtener los trabajos, primero los destacado
         $trabajos = Trabajo::orderByDesc('destacado')
