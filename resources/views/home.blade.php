@@ -11,30 +11,49 @@
 
 <body class="bg-[var(--principal)] text-white font-sans">
 
-    <header class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/90 backdrop-blur">
+    <header class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/80 backdrop-blur-md">
+
         <!-- NAVEGADOR -->
-        <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between uppercase text-sm tracking-widest">
-            <a href="#inicio" class="font-bold">Artesano Studio</a>
-            <div class="flex gap-8">
-                <a href="#inicio" class="hover:text-[var(--secundario)]">Home</a>
-                <a href="#trabajos" class="hover:text-[var(--secundario)]">Trabajos</a>
-                <a href="#servicios" class="hover:text-[var(--secundario)]">Servicios</a>
-                <a href="#estudio" class="hover:text-[var(--secundario)]">El estudio</a>
-                <a href="#equipo" class="hover:text-[var(--secundario)]">Equipo</a>
-                <a href="#contacto" class="hover:text-[var(--secundario)]">Contacto</a>
+        <nav class="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[1fr_auto_1fr] items-center uppercase text-sm tracking-widest">
+
+            <!-- Enlaces izquierda -->
+            <div class="flex justify-end gap-7">
+                <a href="#inicio" class="hover:text-[var(--secundario)] whitespace-nowrap">Home</a>
+                <a href="#trabajos" class="hover:text-[var(--secundario)] whitespace-nowrap">Trabajos</a>
+                <a href="#servicios" class="hover:text-[var(--secundario)] whitespace-nowrap">Servicios</a>
             </div>
+
+            <!-- Logo centrado -->
+            <a href="#inicio" class="flex justify-center mx-12">
+                <img
+                    src="{{ asset('img/logo/logo-artesano-nav.png') }}"
+                    alt="Logotipo de Artesano Studio"
+                    class="h-16 w-auto">
+            </a>
+
+            <!-- Enlaces derecha -->
+            <div class="flex justify-start gap-8">
+                <a href="#estudio" class="hover:text-[var(--secundario)] whitespace-nowrap">El estudio</a>
+                <a href="#equipo" class="hover:text-[var(--secundario)] whitespace-nowrap">Equipo</a>
+                <a href="#contacto" class="hover:text-[var(--secundario)] whitespace-nowrap">Contacto</a>
+            </div>
+
         </nav>
     </header>
 
     <main>
 
         <!-- HOME -->
-        <section id="inicio" class="min-h-screen pt-28 px-6 flex items-center">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="bg-[var(--secundario)] h-[500px] rounded-lg"></div>
+        <section id="inicio" class="min-h-screen pt-36 px-6 flex items-center">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
+
+                <img
+                    src="{{ asset('img/home/artesano_hor_home_1.jpg') }}"
+                    alt="Imagen principal de Artesano Studio"
+                    class="w-full h-[560px] object-cover rounded-lg">
 
                 <div>
-                    <h1 class="text-5xl md:text-7xl uppercase mb-8">
+                    <h1 class="text-6xl md:text-8xl uppercase mb-8 leading-[0.95]">
                         Where silence speaks,<br>Artesano thinks
                     </h1>
 
@@ -42,6 +61,7 @@
                         Artesano Studio es un estudio creativo que trabaja desde la observación y el detalle.
                     </p>
                 </div>
+
             </div>
         </section>
 
