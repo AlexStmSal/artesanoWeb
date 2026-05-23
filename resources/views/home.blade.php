@@ -105,23 +105,69 @@
         <!-- SERVICIOS -->
         <section id="servicios" class="min-h-screen pt-28 px-6">
             <div class="max-w-7xl mx-auto">
+
                 <h2 class="text-4xl uppercase mb-10">Servicios</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <article class="bg-white/20 p-8 rounded-lg">
-                        <h3 class="uppercase text-xl mb-4">Filmmaking</h3>
-                        <p class="text-[var(--secundario)]">Producción audiovisual y creación de contenido visual.</p>
+
+                    <!-- Filmaking -->
+                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                        <img
+                            src="{{ asset('img/servicios/artesano_ver_servicios_video.jpg') }}"
+                            alt="Servicio de filmmaking en Artesano Studio"
+                            class="w-full h-full object-cover">
+
+                        <div class="absolute bottom-0 left-0 w-full h-[110px] group-hover:h-[200px] bg-gradient-to-t from-black/40 via-black/15 to-transparent backdrop-blur-sm px-8 transition-all duration-500 ease-in-out flex flex-col justify-center group-hover:justify-start group-hover:py-8">
+                            <h3 class="uppercase text-4xl md:text-5xl leading-none tracking-wide transition-all duration-500 ease-in-out">
+                                Filmmaking
+                            </h3>
+
+                            <p class="mt-6 max-w-sm text-[var(--secundario)] leading-relaxed opacity-0 max-h-0 overflow-hidden translate-y-4 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
+                                Producción audiovisual y creación de contenido visual.
+                            </p>
+                        </div>
                     </article>
 
-                    <article class="bg-white/20 p-8 rounded-lg">
-                        <h3 class="uppercase text-xl mb-4">Fotografía</h3>
-                        <p class="text-[var(--secundario)]">Trabajo visual centrado en composición, detalle e identidad.</p>
+                    <!-- Fotografía -->
+                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+
+                        <img
+                            src="{{ asset('img/servicios/artesano_ver_servicios_foto.jpg') }}"
+                            alt="Servicio de fotografía en Artesano Studio"
+                            class="w-full h-full object-cover">
+
+                        <div class="absolute bottom-0 left-0 w-full h-[110px] group-hover:h-[200px] bg-gradient-to-t from-black/40 via-black/15 to-transparent backdrop-blur-sm px-8 transition-all duration-500 ease-in-out flex flex-col justify-center group-hover:justify-start group-hover:py-8">
+                            <h3 class="uppercase text-4xl md:text-5xl leading-none tracking-wide transition-all duration-500 ease-in-out">
+                                Fotografía
+                            </h3>
+
+                            <p class="mt-6 max-w-sm text-[var(--secundario)] leading-relaxed opacity-0 max-h-0 overflow-hidden translate-y-4 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
+                                Trabajo visual centrado en composición, detalle e identidad.
+                            </p>
+
+                        </div>
                     </article>
 
-                    <article class="bg-white/20 p-8 rounded-lg">
-                        <h3 class="uppercase text-xl mb-4">Web Design</h3>
-                        <p class="text-[var(--secundario)]">Diseño y desarrollo de experiencias web creativas.</p>
+                    <!-- Web -->
+                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+
+                        <img
+                            src="{{ asset('img/servicios/artesano_ver_servicios_web.jpg') }}"
+                            alt="Servicio de diseño web en Artesano Studio"
+                            class="w-full h-full object-cover">
+
+                        <div class="absolute bottom-0 left-0 w-full h-[110px] group-hover:h-[200px] bg-gradient-to-t from-black/40 via-black/15 to-transparent backdrop-blur-sm px-8 transition-all duration-500 ease-in-out flex flex-col justify-center group-hover:justify-start group-hover:py-8">
+                            <h3 class="uppercase text-4xl md:text-5xl leading-none tracking-wide transition-all duration-500 ease-in-out">
+                                Web Design
+                            </h3>
+
+                            <p class="mt-6 max-w-sm text-[var(--secundario)] leading-relaxed opacity-0 max-h-0 overflow-hidden translate-y-4 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
+                                Diseño y desarrollo de experiencias web creativas.
+                            </p>
+
+                        </div>
                     </article>
+
                 </div>
             </div>
         </section>
