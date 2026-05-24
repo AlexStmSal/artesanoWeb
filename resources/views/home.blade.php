@@ -308,8 +308,9 @@
         </section>
 
         <!-- CONTACTO -->
-        <section id="contacto" class="min-h-screen pt-28 px-6 flex items-center">
+        <section id="contacto" class="min-h-screen pt-28 px-6">
             <div class="max-w-7xl mx-auto w-full">
+
                 <h2 class="text-4xl uppercase mb-10">Contacto</h2>
 
                 <!-- Mostrar mensaje de éxito cuando el form se envió correctamente -->
@@ -326,56 +327,75 @@
                 </div>
                 @endif
 
-                <form action="{{ route('contacto.store') }}" method="POST" class="max-w-md mx-auto bg-white/20 p-8 rounded-lg">
-                    @csrf
+                <div class="min-h-[600px] grid grid-cols-1 md:grid-cols-[1fr_1.15fr_1fr] gap-10 items-center">
 
-                    <!-- Nombre y apellidos -->
-                    <div class="mb-4">
-                        <input type="text" name="nombre" placeholder="Nombre y apellidos"
-                            value="{{ old('nombre') }}"
-                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none ">
-
-                        @error('nombre')
-                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
-                        @enderror
+                    <!-- Texto decorativo izquierda -->
+                    <div class="hidden md:flex justify-end">
+                        <span class="text-8xl lg:text-9xl uppercase leading-none tracking-wide ">
+                            Let's
+                        </span>
                     </div>
 
-                    <!-- Email -->
-                    <div class="mb-4">
-                        <input type="email" name="email" placeholder="Correo electrónico"
-                            value="{{ old('email') }}"
-                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
+                    <!-- Formulario -->
+                    <form action="{{ route('contacto.store') }}" method="POST" class="w-full max-w-xl mx-auto bg-white/20 p-10 rounded-lg">
+                        @csrf
 
-                        @error('email')
-                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
-                        @enderror
+                        <!-- Nombre y apellidos -->
+                        <div class="mb-5">
+                            <input type="text" name="nombre" placeholder="Nombre y apellidos"
+                                value="{{ old('nombre') }}"
+                                class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none">
+
+                            @error('nombre')
+                            <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-5">
+                            <input type="email" name="email" placeholder="Correo electrónico"
+                                value="{{ old('email') }}"
+                                class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none">
+
+                            @error('email')
+                            <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Asunto -->
+                        <div class="mb-5">
+                            <input type="text" name="asunto" placeholder="Asunto"
+                                value="{{ old('asunto') }}"
+                                class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none">
+
+                            @error('asunto')
+                            <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Mensaje -->
+                        <div class="mb-8">
+                            <textarea name="mensaje" placeholder="Mensaje" rows="4"
+                                class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none resize-none">{{ old('mensaje') }}</textarea>
+
+                            @error('mensaje')
+                            <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[var(--principal)] transition">
+                            Enviar
+                        </button>
+                    </form>
+
+                    <!-- Texto decorativo derecha -->
+                    <div class="hidden md:flex justify-start">
+                        <span class="text-8xl lg:text-9xl uppercase leading-none tracking-wide">
+                            Talk
+                        </span>
                     </div>
 
-                    <!-- Asunto -->
-                    <div class="mb-4">
-                        <input type="text" name="asunto" placeholder="Asunto"
-                            value="{{ old('asunto') }}"
-                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">
-
-                        @error('asunto')
-                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <!-- Mensaje -->
-                    <div class="mb-6">
-                        <textarea name="mensaje" placeholder="Mensaje"
-                            class="w-full bg-transparent border-b border-white py-2 placeholder-white/70 focus:outline-none">{{ old('mensaje') }}</textarea>
-
-                        @error('mensaje')
-                        <p class="text-sm text-red-100 mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[var(--principal)] transition">
-                        Enviar
-                    </button>
-                </form>
+                </div>
             </div>
         </section>
 
