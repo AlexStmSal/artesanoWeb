@@ -172,17 +172,63 @@
             </div>
         </section>
 
+
         <!-- EL ESTUDIO -->
         <section id="estudio" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="text-4xl uppercase mb-8">El estudio</h2>
-                    <p class="text-[var(--secundario)] leading-relaxed">
-                        Espacio de trabajo donde se desarrollan proyectos audiovisuales, musicales y digitales.
-                    </p>
-                </div>
+            <div class="max-w-7xl mx-auto">
 
-                <div class="bg-[var(--secundario)] h-[400px] rounded-lg"></div>
+                <h2 class="text-4xl uppercase mb-10">El estudio</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-[0.75fr_1.25fr] gap-12 items-start">
+
+                    <!-- Texto -->
+                    <div>
+                        <p class="text-[var(--secundario)] leading-relaxed max-w-md">
+                            Espacio de trabajo donde se desarrollan proyectos audiovisuales, musicales y digitales.
+                            Un entorno pensado para la creación, la producción y el cuidado del detalle en cada proyecto.
+                        </p>
+                    </div>
+
+                    <!-- Carrusel -->
+                    <div
+                        id="estudio-carrusel"
+                        class="w-full"
+                        data-imagenes='[
+                    "{{ asset('img/estudio/artesano_hor_estudio_1.jpg') }}",
+                    "{{ asset('img/estudio/artesano_hor_estudio_2.jpg') }}",
+                    "{{ asset('img/estudio/artesano_hor_estudio_3.jpg') }}",
+                    "{{ asset('img/estudio/artesano_hor_estudio_4.jpg') }}",
+                    "{{ asset('img/estudio/artesano_hor_estudio_5.jpg') }}"
+                ]'>
+
+                        <div class="relative rounded-lg overflow-hidden bg-white/10">
+                            <!-- Imagen principal -->
+                            <img
+                                id="estudio-imagen-principal"
+                                src="{{ asset('img/estudio/artesano_hor_estudio_1.jpg') }}"
+                                alt="Imagen principal del estudio Artesano Studio"
+                                class="w-full h-[480px] object-cover transition-all duration-500">
+
+                            <!-- Flecha izquierda -->
+                            <button
+                                type="button"
+                                id="estudio-prev"
+                                class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm px-4 py-3 rounded-full hover:bg-black/50 transition"
+                                aria-label="Imagen anterior">
+                                ‹
+                            </button>
+
+                            <!-- Flecha derecha -->
+                            <button
+                                type="button"
+                                id="estudio-next"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 backdrop-blur-sm px-4 py-3 rounded-full hover:bg-black/50 transition"
+                                aria-label="Imagen siguiente">
+                                ›
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
