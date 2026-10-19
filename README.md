@@ -132,5 +132,3 @@ Proyecto desarrollado como trabajo final del ciclo de Técnico Superior en Desar
 ## Autor
 
 **Alejandro Santamaría Salcedo**
-
-[GitHub](https://github.com/AlexStmSal)
