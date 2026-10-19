@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artesano Studio</title>
 
+    <script>
+    document.documentElement.classList.add('js');
+</script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -44,7 +48,7 @@
     <main>
 
         <!-- HOME -->
-        <section id="inicio" class="min-h-screen pt-36 px-6 flex items-center">
+        <section id="inicio" class="min-h-screen pt-28 pb-12 px-6 flex items-center">
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
 
                 <img
@@ -65,45 +69,61 @@
             </div>
         </section>
 
+        
 
-        <!-- TRABAJOS -->
-        <section id="trabajos" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl uppercase mb-10">Trabajos</h2>
+<!-- TRABAJOS -->
+<section id="trabajos" class="py-20 scroll-mt-24 overflow-x-clip">
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    @forelse($trabajos as $trabajo)
-                    <article class="bg-white/20 rounded-lg overflow-hidden">
-                        <iframe
-                            src="{{ $trabajo->url_video }}"
-                            title="{{ $trabajo->titulo }}"
-                            class="w-full h-52"
-                            allowfullscreen>
-                        </iframe>
+    <!-- Título independiente del contenedor de vídeos -->
+    <div class="titulo-trabajos-contenedor mb-12">
+        <h2
+            id="titulo-trabajos"
+            class="text-7xl md:text-8xl xl:text-9xl uppercase font-bold tracking-tight leading-none">
+            Trabajos
+        </h2>
+    </div>
 
-                        <div class="p-5">
-                            <h3 class="uppercase text-xl mb-3">
-                                {{ $trabajo->titulo }}
-                            </h3>
+    <!-- Contenedor de vídeos centrado -->
+    <div class="max-w-7xl mx-auto px-6">
 
-                            @if($trabajo->descripcion)
+        <!-- Grid de trabajos -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10">
+
+            @forelse($trabajos as $trabajo)
+                <article class="bg-white/20 rounded-lg overflow-hidden">
+                    <iframe
+                        src="{{ $trabajo->url_video }}"
+                        title="{{ $trabajo->titulo }}"
+                        class="w-full h-52"
+                        allowfullscreen>
+                    </iframe>
+
+                    <div class="p-5">
+                        <h3 class="uppercase text-xl mb-3">
+                            {{ $trabajo->titulo }}
+                        </h3>
+
+                        @if($trabajo->descripcion)
                             <p class="text-[var(--secundario)]">
                                 {{ $trabajo->descripcion }}
                             </p>
-                            @endif
-                        </div>
-                    </article>
-                    @empty
-                    <p class="text-[var(--secundario)]">
-                        No hay trabajos disponibles.
-                    </p>
-                    @endforelse
-                </div>
-            </div>
-        </section>
+                        @endif
+                    </div>
+                </article>
+            @empty
+                <p class="text-[var(--secundario)]">
+                    No hay trabajos disponibles.
+                </p>
+            @endforelse
+
+        </div>
+    </div>
+</section>
+
+
 
         <!-- SERVICIOS -->
-        <section id="servicios" class="min-h-screen pt-28 px-6">
+        <section id="servicios" class="min-h-screen pt-20 px-6">
             <div class="max-w-7xl mx-auto">
 
                 <h2 class="text-4xl uppercase mb-10">Servicios</h2>
@@ -174,7 +194,7 @@
 
 
         <!-- EL ESTUDIO -->
-        <section id="estudio" class="min-h-screen pt-28 px-6">
+        <section id="estudio" class="min-h-screen pt-20 px-6">
             <div class="max-w-7xl mx-auto">
 
                 <h2 class="text-4xl uppercase mb-10">El estudio</h2>
@@ -233,7 +253,7 @@
         </section>
 
         <!-- EQUIPO -->
-        <section id="equipo" class="min-h-screen pt-28 px-6">
+        <section id="equipo" class="min-h-screen pt-20 px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl uppercase mb-10">Equipo</h2>
 
@@ -308,10 +328,8 @@
         </section>
 
         <!-- CONTACTO -->
-        <section id="contacto" class="min-h-screen pt-28 px-6">
+        <section id="contacto" class="min-h-screen pt-20 px-6">
             <div class="max-w-7xl mx-auto w-full">
-
-                <h2 class="text-4xl uppercase mb-10">Contacto</h2>
 
                 <!-- Mostrar mensaje de éxito cuando el form se envió correctamente -->
                 @if(session('success'))

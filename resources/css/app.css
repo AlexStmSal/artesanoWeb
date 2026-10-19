@@ -1,11 +1,79 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Variables con los colores principales */
+/* ==========================================
+   VARIABLES - Colores principales
+========================================== */
+
 :root {
     --principal: #8f896c;
     --secundario: #e4e2dd;
     --blanco: #ffffff;
     --tema_oscuro: #45402d;
+}
+
+
+/* ==========================================
+   TRABAJOS - Posicionamiento del título
+========================================== */
+
+/* Título independiente del ancho máximo de las tarjetas */
+.titulo-trabajos-contenedor {
+    width: 100%;
+    padding-left: clamp(24px, 2.8vw, 72px);
+    padding-right: 24px;
+}
+
+
+
+/* ==========================================
+   TRABAJOS - Animación de entrada
+========================================== */
+
+/* Estado normal: título visible */
+#titulo-trabajos {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Estado inicial con JavaScript activo */
+.js #titulo-trabajos:not(.animar) {
+    opacity: 0;
+    transform: translateX(-110vw);
+}
+
+/* Animación activada mediante JavaScript */
+.js #titulo-trabajos.animar {
+    animation: entradaTrabajos 0.95s
+               cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Desplazamiento desde el exterior */
+@keyframes entradaTrabajos {
+    from {
+        opacity: 0;
+        transform: translateX(-110vw);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ==========================================
+   ACCESIBILIDAD - Movimiento reducido
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .js #titulo-trabajos,
+    .js #titulo-trabajos:not(.animar),
+    .js #titulo-trabajos.animar {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
 }
