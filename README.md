@@ -1,61 +1,136 @@
 # Artesano Studio
 
-Artesano Studio es una aplicación web desarrollada como proyecto final de 2º DAW. El proyecto consiste en una web tipo *one page* para presentar la identidad, servicios, trabajos, equipo y contacto de un estudio creativo/audiovisual.
+Artesano Studio es una aplicación web full stack desarrollada para presentar y gestionar el contenido de un estudio creativo y audiovisual.
 
-La aplicación combina una parte pública, visible para cualquier usuario, con un panel privado de administración desde el que se pueden gestionar algunos contenidos dinámicos.
+La aplicación combina una web pública de tipo *one page* con un panel privado de administración, permitiendo gestionar contenido dinámico almacenado en una base de datos MySQL.
 
-## Funcionalidades principales
+[Ver aplicación](https://artesanostudio.laravel.cloud/)
 
-- Web pública organizada en secciones:
-  - Home
+## Funcionalidades
+
+### Web pública
+
+- Navegación *one page* organizada en:
+  - Inicio
   - Servicios
   - El estudio
   - Trabajos
   - Equipo
   - Contacto
+- Visualización de trabajos audiovisuales mediante contenido embebido.
+- Listado de equipamiento almacenado en base de datos.
+- Filtros y paginación para la consulta de equipos.
+- Carrusel interactivo de imágenes del estudio.
+- Formulario de contacto con validación y almacenamiento de mensajes.
 
-- Panel de administración protegido mediante autenticación.
-- Gestión de equipos desde base de datos.
-- Gestión de trabajos audiovisuales mediante enlaces embebidos.
-- Formulario de contacto con validación.
-- Almacenamiento de mensajes de contacto.
-- Filtros y paginación en la sección Equipo.
-- Carrusel de imágenes en la sección El estudio.
-- Despliegue preparado para Laravel Cloud.
+### Panel de administración
 
-## Tecnologías utilizadas
+- Autenticación mediante Laravel Breeze.
+- Gestión de equipos.
+- Gestión de trabajos audiovisuales.
+- Consulta y eliminación de mensajes recibidos mediante el formulario de contacto.
+- Panel protegido mediante middleware de autenticación.
 
-- Laravel
+## Tecnologías
+
+### Backend
+
 - PHP
-- Blade
-- MySQL
-- Tailwind CSS
-- JavaScript
-- Vite
+- Laravel
 - Laravel Breeze
+
+### Frontend
+
+- Blade
+- JavaScript
+- Tailwind CSS
+
+### Datos
+
+- MySQL
+
+### Herramientas y despliegue
+
+- Vite
 - Git / GitHub
+- Laravel Cloud
 
-## Estructura general
+## Arquitectura y estructura
 
-La parte pública de la web está planteada como una página única con navegación por secciones.  
-El panel privado permite gestionar los contenidos principales sin modificar directamente el código.
+La parte pública está desarrollada como una aplicación *one page*, utilizando navegación mediante secciones.
 
-La base de datos incluye tablas para usuarios, categorías, equipos, trabajos y mensajes de contacto.
+Laravel gestiona la lógica de la aplicación, las peticiones y la comunicación con la base de datos, mientras que Blade se utiliza para la generación de las vistas.
 
-## Consideraciones
+La base de datos contiene información relativa a:
 
-Este repositorio forma parte de un proyecto académico.  
-No se incluyen credenciales, claves privadas ni variables sensibles en el código fuente.
+- Usuarios
+- Categorías
+- Equipos
+- Trabajos
+- Mensajes de contacto
 
-Para ejecutar el proyecto en un entorno local es necesario configurar el archivo `.env`, instalar las dependencias y ejecutar las migraciones correspondientes.
+El panel privado permite gestionar los principales contenidos dinámicos de la aplicación sin necesidad de modificar directamente el código.
+
+## Ejecución local
+
+Para ejecutar el proyecto en local es necesario disponer de PHP, Composer, Node.js y una base de datos MySQL.
+
+Clona el repositorio e instala las dependencias:
+
+```bash
+git clone https://github.com/AlexStmSal/artesanoWeb.git
+cd artesanoWeb
+
+composer install
+npm install
+```
+
+Crea el archivo de configuración del entorno y genera la clave de la aplicación:
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Configura en el archivo `.env` la conexión a la base de datos MySQL y crea previamente la base de datos correspondiente.
+
+Después, ejecuta las migraciones y los seeders:
+
+```bash
+php artisan migrate --seed
+```
+
+Por último, inicia Vite y el servidor de desarrollo de Laravel:
+
+```bash
+npm run dev
+php artisan serve
+```
+
+La aplicación estará disponible por defecto en:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Seguridad
+
+El repositorio no contiene credenciales, claves privadas ni variables sensibles.
+
+La configuración específica de cada entorno debe realizarse mediante el archivo `.env`.
 
 ## Estado del proyecto
 
-El proyecto cuenta con una base funcional completa y desplegable.  
-Quedan abiertas posibles mejoras visuales y funcionales, como ajustes responsive, modo oscuro, mejora de la paginación mediante AJAX o gestión de imágenes desde el panel de administración.
+El proyecto se encuentra funcional y desplegado en Laravel Cloud.
+
+Como posibles evoluciones futuras se contempla la ampliación del panel de administración y la incorporación de nuevas funcionalidades en la gestión dinámica del contenido.
+
+## Contexto
+
+Proyecto desarrollado como trabajo final del ciclo de Técnico Superior en Desarrollo de Aplicaciones Web (DAW), curso 2025/26.
 
 ## Autor
 
-Alejandro Santamaría Salcedo  
-Proyecto final — 2º DAW  
-2025/26
+**Alejandro Santamaría Salcedo**
+
+[GitHub](https://github.com/AlexStmSal)
