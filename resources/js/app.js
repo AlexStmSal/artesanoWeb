@@ -19,40 +19,74 @@ Alpine.start();
 
 
 /* ==========================================
-   TRABAJOS - Animación al hacer scroll
+   TÍTULOS - Animación general
 ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const titulo = document.getElementById('titulo-trabajos');
-    const contenedor = document.querySelector(
-        '.titulo-trabajos-contenedor'
-    );
 
-    if (!titulo || !contenedor) return;
+    // Seleccionamos todos los títulos de sección
+    const titulos = document.querySelectorAll('.titulo-seccion');
 
-    // Si el usuario prefiere reducir animaciones
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        titulo.classList.add('animar');
+    if (!titulos.length) return;
+
+    // Comprueba si el usuario prefiere menos movimiento
+    const movimientoReducido = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    // Sin animaciones o sin IntersectionObserver:
+    // mantenemos los títulos visibles
+    if (
+        movimientoReducido ||
+        !('IntersectionObserver' in window)
+    ) {
         return;
     }
 
-    // Si IntersectionObserver no está disponible
-    if (!('IntersectionObserver' in window)) {
-        titulo.classList.add('animar');
-        return;
-    }
-
+    // Creamos un único observador para todos los títulos
     const observer = new IntersectionObserver((entries) => {
+
         entries.forEach((entry) => {
+
             if (entry.isIntersecting) {
+
+                const contenedor = entry.target;
+
+                const titulo = contenedor.querySelector(
+                    '.titulo-seccion'
+                );
+
+                if (!titulo) return;
+
+                // Ejecutamos la animación
+                titulo.classList.remove('preparado');
                 titulo.classList.add('animar');
-                observer.unobserve(entry.target);
+
+                // Evitamos que vuelva a ejecutarse
+                observer.unobserve(contenedor);
             }
+
         });
+
     }, {
         threshold: 0.3
     });
 
-    observer.observe(contenedor);
-});
+    // Preparamos y observamos todos los títulos
+    titulos.forEach((titulo) => {
 
+        const contenedor = titulo.closest(
+            '.titulo-seccion-contenedor'
+        );
+
+        if (!contenedor) return;
+
+        // Preparamos el título para entrar desde la izquierda
+        titulo.classList.add('preparado');
+
+        // Observamos el contenedor en su posición real
+        observer.observe(contenedor);
+
+    });
+
+});

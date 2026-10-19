@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* ==========================================
    VARIABLES - Colores principales
 ========================================== */
@@ -16,42 +17,56 @@
 
 
 /* ==========================================
-   TRABAJOS - Posicionamiento del título
+   TÍTULOS - Posicionamiento general
 ========================================== */
 
-/* Título independiente del ancho máximo de las tarjetas */
-.titulo-trabajos-contenedor {
+/* Contenedor independiente del ancho de las tarjetas */
+.titulo-seccion-contenedor {
     width: 100%;
     padding-left: clamp(24px, 2.8vw, 72px);
     padding-right: 24px;
 }
 
+/* Tipografía común para todos los títulos */
+.titulo-seccion {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
 
+    /* Tipografía */
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 7vw, 8rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
 
-/* ==========================================
-   TRABAJOS - Animación de entrada
-========================================== */
+    overflow-wrap: break-word;
 
-/* Estado normal: título visible */
-#titulo-trabajos {
+    /* Visible por defecto */
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Estado inicial con JavaScript activo */
-.js #titulo-trabajos:not(.animar) {
+
+/* ==========================================
+   TÍTULOS - Animación de entrada
+========================================== */
+
+/* Estado inicial, preparado por JavaScript */
+.js .titulo-seccion.preparado {
     opacity: 0;
     transform: translateX(-110vw);
 }
 
-/* Animación activada mediante JavaScript */
-.js #titulo-trabajos.animar {
-    animation: entradaTrabajos 0.95s
+/* Animación desde el exterior de la pantalla */
+.js .titulo-seccion.animar {
+    animation: entradaSeccion 0.95s
                cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Desplazamiento desde el exterior */
-@keyframes entradaTrabajos {
+/* Movimiento horizontal y aparición gradual */
+@keyframes entradaSeccion {
     from {
         opacity: 0;
         transform: translateX(-110vw);
@@ -69,9 +84,9 @@
 ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    .js #titulo-trabajos,
-    .js #titulo-trabajos:not(.animar),
-    .js #titulo-trabajos.animar {
+    .js .titulo-seccion,
+    .js .titulo-seccion.preparado,
+    .js .titulo-seccion.animar {
         opacity: 1;
         transform: none;
         animation: none;
