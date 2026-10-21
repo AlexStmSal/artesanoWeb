@@ -493,52 +493,64 @@
 
 
     <!-- FOOTER -->
-    <footer class="px-6 py-10 border-t border-white/20 bg-white/10">
+<footer class="w-full px-6 py-10 border-t border-white/20 bg-white/10">
 
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <!-- Contenedor completo del footer -->
+    <div class="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-[0.9fr_1.2fr_1.25fr_1.2fr_0.9fr] items-center gap-y-8">
 
-            <div class="text-center md:text-left">
-                <p class="uppercase tracking-widest font-bold">
-                    Artesano Studio
-                </p>
+        <!-- Espacio exterior izquierdo -->
+        <div class="hidden xl:block"></div>
 
-                <p class="text-sm text-[var(--secundario)] mt-2">
-                    Filmmaking, diseño web y producción creativa.
-                </p>
-            </div>
+        <!-- Identidad del estudio -->
+        <div class="text-center md:text-left">
 
-            <div class="flex flex-wrap justify-center gap-6 uppercase text-sm tracking-widest">
+            <p class="uppercase tracking-widest font-bold">
+                Artesano Studio
+            </p>
 
-                <a
-                    href="mailto:contacto@artesanostudio.com"
-                    class="hover:text-[var(--secundario)]">
-                    Email
-                </a>
-
-                <a
-                    href="https://wa.me/34600000000"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:text-[var(--secundario)]">
-                    WhatsApp
-                </a>
-
-                <a
-                    href="https://www.instagram.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:text-[var(--secundario)]">
-                    Instagram
-                </a>
-
-            </div>
-
-            <div class="text-sm text-[var(--secundario)] text-center md:text-right">
-                © {{ date('Y') }} Artesano Studio
-            </div>
+            <p class="text-sm text-[var(--secundario)] mt-2">
+                Filmmaking, diseño web y producción creativa.
+            </p>
 
         </div>
-    </footer>
+
+        <!-- Enlaces de contacto y redes -->
+        <div class="flex flex-wrap items-center justify-center gap-6 uppercase text-sm tracking-widest">
+
+            <a
+                href="mailto:contacto@artesanostudio.com"
+                class="hover:text-[var(--secundario)] transition-colors">
+                Email
+            </a>
+
+            <a
+                href="https://wa.me/34600000000"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-[var(--secundario)] transition-colors">
+                WhatsApp
+            </a>
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-[var(--secundario)] transition-colors">
+                Instagram
+            </a>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-sm text-[var(--secundario)] text-center md:text-right">
+            © {{ date('Y') }} Artesano Studio
+        </div>
+
+        <!-- Espacio exterior derecho -->
+        <div class="hidden xl:block"></div>
+
+    </div>
+</footer>
 
 </body>
 
