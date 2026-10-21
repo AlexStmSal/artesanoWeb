@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    
+
     <script>
         document.documentElement.classList.add('js');
     </script>
@@ -23,8 +23,7 @@
     <header class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/80 backdrop-blur-md">
 
         <!-- NAVEGADOR -->
-        <nav class="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[1fr_auto_1fr] items-center uppercase text-sm tracking-widest">
-
+        <nav class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-[1fr_auto_1fr] items-center uppercase text-[15px] tracking-widest">
             <!-- Enlaces izquierda -->
             <div class="flex justify-end gap-7">
                 <a href="#inicio" class="hover:text-[var(--secundario)] whitespace-nowrap">Home</a>
@@ -37,7 +36,7 @@
                 <img
                     src="{{ asset('img/logo/logo-artesano-nav.png') }}"
                     alt="Logotipo de Artesano Studio"
-                    class="h-16 w-auto">
+                    class="h-20 w-auto">
             </a>
 
             <!-- Enlaces derecha -->
@@ -53,16 +52,17 @@
     <main>
 
         <!-- HOME -->
-        <section id="inicio" class="min-h-screen pt-28 pb-12 px-6 flex items-center">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
+        <section id="inicio" class="min-h-screen pt-36 pb-12 px-6 flex items-center">
+            <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
 
                 <img
                     src="{{ asset('img/home/artesano_hor_home_1.jpg') }}"
                     alt="Imagen principal de Artesano Studio"
-                    class="w-full h-[560px] object-cover rounded-lg">
+                    class="w-full h-[600px] object-cover rounded-lg">
 
-                <div>
-                    <h1 class="text-6xl md:text-8xl uppercase mb-8 leading-[0.95]">
+                <!-- Contenido de presentación -->
+                <div class="lg:translate-x-10">
+                    <h1 class="text-6xl md:text-[clamp(4.5rem,4.5vw,6.5rem)] uppercase mb-8 leading-[0.95]">
                         Where silence speaks,<br>Artesano thinks
                     </h1>
 
