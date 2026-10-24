@@ -6,15 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artesano Studio</title>
 
+    <!-- Fuente Bebas Neue -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <script>
+        document.documentElement.classList.add('js');
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-[var(--principal)] text-white font-sans">
 
-    <header class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/80 backdrop-blur-md">
 
-        <!-- NAVEGADOR -->
-        <nav class="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[1fr_auto_1fr] items-center uppercase text-sm tracking-widest">
+    <!-- HEADER -->
+    <header
+        x-data="{ menuAbierto: false }"
+        class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/80 backdrop-blur-md">
+
+        <!-- CABECERA MÓVIL / TABLET -->
+        <div class="lg:hidden w-full px-6 py-6">
+            <div class="grid grid-cols-[56px_minmax(0,1fr)_56px] items-center">
+                <!-- Botón burger -->
+                <button
+                    type="button"
+                    @click="menuAbierto = !menuAbierto"
+                    class="w-14 h-14 border-4 border-[var(--tema_oscuro)] flex flex-col items-center justify-center gap-[5px]"
+                    aria-label="Abrir menú"
+                    :aria-expanded="menuAbierto.toString()">
+
+                    <span class="block w-6 h-[2px] bg-[var(--tema_oscuro)]"></span>
+                    <span class="block w-6 h-[2px] bg-[var(--tema_oscuro)]"></span>
+                    <span class="block w-6 h-[2px] bg-[var(--tema_oscuro)]"></span>
+                </button>
+
+                <!-- Logo centrado -->
+                <!-- Logo centrado -->
+                <a href="#inicio"
+                    class="flex justify-center items-center"
+                    aria-label="Volver al inicio">
+
+                    <img
+                        src="{{ asset('img/logo/logo-artesano-nav.png') }}"
+                        alt="Artesano Studio"
+                        class="h-12 sm:h-16 w-auto">
+
+                </a>
+
+                <!-- Espacio simétrico -->
+                <div class="w-14 h-14"></div>
+            </div>
+
+            <!-- Menú desplegable móvil -->
+            <div
+                x-show="menuAbierto"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-2"
+                class="mt-5 bg-white/10 border border-white/20 rounded-lg px-6 py-5"
+                style="display: none;">
+
+                <nav class="flex flex-col gap-4 uppercase tracking-widest text-sm" aria-label="Navegación móvil">
+                    <a @click="menuAbierto = false" href="#inicio" class="hover:text-[var(--secundario)]">Home</a>
+                    <a @click="menuAbierto = false" href="#trabajos" class="hover:text-[var(--secundario)]">Trabajos</a>
+                    <a @click="menuAbierto = false" href="#servicios" class="hover:text-[var(--secundario)]">Servicios</a>
+                    <a @click="menuAbierto = false" href="#estudio" class="hover:text-[var(--secundario)]">El estudio</a>
+                    <a @click="menuAbierto = false" href="#equipo" class="hover:text-[var(--secundario)]">Equipo</a>
+                    <a @click="menuAbierto = false" href="#contacto" class="hover:text-[var(--secundario)]">Contacto</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- CABECERA ESCRITORIO -->
+        <nav
+            class="hidden lg:grid max-w-6xl mx-auto px-6 py-6 grid-cols-[1fr_auto_1fr] items-center uppercase text-[15px] tracking-widest"
+            aria-label="Navegación principal">
 
             <!-- Enlaces izquierda -->
             <div class="flex justify-end gap-7">
@@ -24,11 +95,11 @@
             </div>
 
             <!-- Logo centrado -->
-            <a href="#inicio" class="flex justify-center mx-12">
+            <a href="#inicio" class="flex justify-center mx-12" aria-label="Volver al inicio">
                 <img
                     src="{{ asset('img/logo/logo-artesano-nav.png') }}"
-                    alt="Logotipo de Artesano Studio"
-                    class="h-16 w-auto">
+                    alt="Artesano Studio"
+                    class="h-20 w-auto">
             </a>
 
             <!-- Enlaces derecha -->
@@ -41,37 +112,85 @@
         </nav>
     </header>
 
+
     <main>
 
+
         <!-- HOME -->
-        <section id="inicio" class="min-h-screen pt-36 px-6 flex items-center">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
+        <section
+            id="inicio"
+            class="px-0 sm:px-6
+           pt-36 sm:pt-36
+           pb-10 xl:pb-12
+           xl:min-h-screen
+           flex items-start xl:items-center">
 
-                <img
-                    src="{{ asset('img/home/artesano_hor_home_1.jpg') }}"
-                    alt="Imagen principal de Artesano Studio"
-                    class="w-full h-[560px] object-cover rounded-lg">
+            <!-- Contenedor principal responsive -->
+            <div class="w-full max-w-7xl mx-auto">
 
-                <div>
-                    <h1 class="text-6xl md:text-8xl uppercase mb-8 leading-[0.95]">
-                        Where silence speaks,<br>Artesano thinks
-                    </h1>
+                <div
+                    class="grid grid-cols-1
+                   xl:grid-cols-[1.05fr_0.95fr]
+                   gap-8 xl:gap-16
+                   items-center">
 
-                    <p class="max-w-md leading-relaxed text-[var(--secundario)]">
-                        Artesano Studio es un estudio creativo que trabaja desde la observación y el detalle.
-                    </p>
+                    <!-- Imagen principal -->
+                    <img
+                        src="{{ asset('img/home/artesano_hor_home_1.jpg') }}"
+                        alt="Imagen principal de Artesano Studio"
+                        class="w-full
+                       h-[240px] sm:h-[380px]
+                       md:h-[460px] xl:h-[600px]
+                       object-cover
+                       rounded-none sm:rounded-lg">
+
+                    <!-- Contenido de presentación -->
+                    <div
+                        class="min-w-0
+                       px-6 sm:px-0
+                       xl:translate-x-4
+                       2xl:translate-x-10">
+
+                        <h1
+                            class="text-[clamp(2.2rem,8vw,6.5rem)]
+                           uppercase leading-[0.95]
+                           mb-6 sm:mb-8">
+                            Where silence<br class="hidden sm:block">
+                            speaks,<br>
+                            Artesano thinks
+                        </h1>
+
+                        <p
+                            class="max-w-md
+                           text-[clamp(1rem,2.8vw,1.2rem)]
+                           leading-relaxed
+                           text-[var(--secundario)]">
+                            Artesano Studio es un estudio creativo que trabaja
+                            desde la observación y el detalle.
+                        </p>
+
+                    </div>
+
                 </div>
-
             </div>
         </section>
 
 
-        <!-- TRABAJOS -->
-        <section id="trabajos" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl uppercase mb-10">Trabajos</h2>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- TRABAJOS -->
+        <section id="trabajos"
+            class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip"> <!-- Título animado -->
+            <div class="titulo-seccion-contenedor mb-8 xl:mb-12">
+                <h2 class="titulo-seccion">
+                    Trabajos
+                </h2>
+            </div>
+
+            <!-- Contenedor de vídeos -->
+            <div class="max-w-7xl mx-auto px-6">
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10">
+
                     @forelse($trabajos as $trabajo)
                     <article class="bg-white/20 rounded-lg overflow-hidden">
                         <iframe
@@ -98,26 +217,36 @@
                         No hay trabajos disponibles.
                     </p>
                     @endforelse
+
                 </div>
             </div>
         </section>
 
-        <!-- SERVICIOS -->
-        <section id="servicios" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto">
 
-                <h2 class="text-4xl uppercase mb-10">Servicios</h2>
+        <!-- SERVICIOS -->
+        <section id="servicios"
+            class="pt-6 pb-6 scroll-mt-32 xl:scroll-mt-24 xl:py-20 overflow-x-clip">
+            <!-- Título animado -->
+            <div class="titulo-seccion-contenedor mb-12">
+                <h2 class="titulo-seccion">
+                    Servicios
+                </h2>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6">
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                    <!-- Filmaking -->
-                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                    <!-- Filmmaking -->
+                    <article class="group relative h-[420px] sm:h-[500px] xl:h-[620px] rounded-lg overflow-hidden bg-white/10">
+
                         <img
                             src="{{ asset('img/servicios/artesano_ver_servicios_video.jpg') }}"
                             alt="Servicio de filmmaking en Artesano Studio"
                             class="w-full h-full object-cover">
 
                         <div class="absolute bottom-0 left-0 w-full h-[110px] group-hover:h-[200px] bg-gradient-to-t from-black/40 via-black/15 to-transparent backdrop-blur-sm px-8 transition-all duration-500 ease-in-out flex flex-col justify-center group-hover:justify-start group-hover:py-8">
+
                             <h3 class="uppercase text-4xl md:text-5xl leading-none tracking-wide transition-all duration-500 ease-in-out">
                                 Filmmaking
                             </h3>
@@ -125,11 +254,12 @@
                             <p class="mt-6 max-w-sm text-[var(--secundario)] leading-relaxed opacity-0 max-h-0 overflow-hidden translate-y-4 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
                                 Producción audiovisual y creación de contenido visual.
                             </p>
+
                         </div>
                     </article>
 
                     <!-- Fotografía -->
-                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                    <article class="group relative h-[420px] sm:h-[500px] xl:h-[620px] rounded-lg overflow-hidden bg-white/10">
 
                         <img
                             src="{{ asset('img/servicios/artesano_ver_servicios_foto.jpg') }}"
@@ -137,6 +267,7 @@
                             class="w-full h-full object-cover">
 
                         <div class="absolute bottom-0 left-0 w-full h-[110px] group-hover:h-[200px] bg-gradient-to-t from-black/40 via-black/15 to-transparent backdrop-blur-sm px-8 transition-all duration-500 ease-in-out flex flex-col justify-center group-hover:justify-start group-hover:py-8">
+
                             <h3 class="uppercase text-4xl md:text-5xl leading-none tracking-wide transition-all duration-500 ease-in-out">
                                 Fotografía
                             </h3>
@@ -149,7 +280,7 @@
                     </article>
 
                     <!-- Web -->
-                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                    <article class="group relative h-[420px] sm:h-[500px] xl:h-[620px] rounded-lg overflow-hidden bg-white/10">
 
                         <img
                             src="{{ asset('img/servicios/artesano_ver_servicios_web.jpg') }}"
@@ -157,6 +288,7 @@
                             class="w-full h-full object-cover">
 
                         <div class="absolute bottom-0 left-0 w-full h-[110px] group-hover:h-[200px] bg-gradient-to-t from-black/40 via-black/15 to-transparent backdrop-blur-sm px-8 transition-all duration-500 ease-in-out flex flex-col justify-center group-hover:justify-start group-hover:py-8">
+
                             <h3 class="uppercase text-4xl md:text-5xl leading-none tracking-wide transition-all duration-500 ease-in-out">
                                 Web Design
                             </h3>
@@ -174,10 +306,16 @@
 
 
         <!-- EL ESTUDIO -->
-        <section id="estudio" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto">
+        <section id="estudio" class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip">
 
-                <h2 class="text-4xl uppercase mb-10">El estudio</h2>
+            <!-- Título animado -->
+            <div class="titulo-seccion-contenedor mb-12">
+                <h2 class="titulo-seccion">
+                    El estudio
+                </h2>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6">
 
                 <div class="grid grid-cols-1 md:grid-cols-[0.75fr_1.25fr] gap-12 items-start">
 
@@ -194,14 +332,15 @@
                         id="estudio-carrusel"
                         class="w-full"
                         data-imagenes='[
-                    "{{ asset('img/estudio/artesano_hor_estudio_1.jpg') }}",
-                    "{{ asset('img/estudio/artesano_hor_estudio_2.jpg') }}",
-                    "{{ asset('img/estudio/artesano_hor_estudio_3.jpg') }}",
-                    "{{ asset('img/estudio/artesano_hor_estudio_4.jpg') }}",
-                    "{{ asset('img/estudio/artesano_hor_estudio_5.jpg') }}"
-                ]'>
+                            "{{ asset('img/estudio/artesano_hor_estudio_1.jpg') }}",
+                            "{{ asset('img/estudio/artesano_hor_estudio_2.jpg') }}",
+                            "{{ asset('img/estudio/artesano_hor_estudio_3.jpg') }}",
+                            "{{ asset('img/estudio/artesano_hor_estudio_4.jpg') }}",
+                            "{{ asset('img/estudio/artesano_hor_estudio_5.jpg') }}"
+                        ]'>
 
                         <div class="relative rounded-lg overflow-hidden bg-white/10">
+
                             <!-- Imagen principal -->
                             <img
                                 id="estudio-imagen-principal"
@@ -226,42 +365,66 @@
                                 aria-label="Imagen siguiente">
                                 ›
                             </button>
+
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+
         <!-- EQUIPO -->
-        <section id="equipo" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl uppercase mb-10">Equipo</h2>
+        <section id="equipo" class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip">
+
+            <!-- Título animado -->
+            <div class="titulo-seccion-contenedor mb-12">
+                <h2 class="titulo-seccion">
+                    Equipo
+                </h2>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6">
 
                 <!-- Filtros públicos -->
-                <form method="GET" action="{{ route('home') }}#equipo" class="bg-white/20 p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <form method="GET" action="{{ route('home') }}#equipo"
+                    class="bg-white/20 p-6 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
 
-                    <input type="text" name="buscar_equipo" placeholder="Buscar equipo, marca o modelo"
+                    <input
+                        type="text"
+                        name="buscar_equipo"
+                        placeholder="Buscar equipo, marca o modelo"
                         value="{{ request('buscar_equipo') }}"
                         class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white placeholder-white/60 focus:outline-none focus:border-white">
 
-                    <select name="categoria_id"
+                    <select
+                        name="categoria_id"
                         class="w-full px-4 py-2 rounded border border-white/60 bg-transparent text-white focus:outline-none focus:border-white">
-                        <option value="" class="text-black">Todas las categorías</option>
+
+                        <option value="" class="text-black">
+                            Todas las categorías
+                        </option>
 
                         @foreach($categorias as $categoria)
-                        <option value="{{ $categoria->id }}" class="text-black" @selected(request('categoria_id')==$categoria->id)>
+                        <option
+                            value="{{ $categoria->id }}"
+                            class="text-black"
+                            @selected(request('categoria_id')==$categoria->id)>
                             {{ $categoria->nombre }}
                         </option>
                         @endforeach
 
                     </select>
 
-                    <button type="submit" class="border border-white py-2 uppercase hover:bg-white hover:text-[var(--principal)] transition">
+                    <button
+                        type="submit"
+                        class="border border-white py-2 uppercase hover:bg-white hover:text-[var(--principal)] transition">
                         Filtrar
                     </button>
                 </form>
 
+                <!-- Tabla de equipos -->
                 <div class="overflow-x-auto">
+
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="border-b border-white/40 uppercase">
@@ -272,7 +435,7 @@
                             </tr>
                         </thead>
 
-                        <!-- Recorre los equipos recibidos desde HomeController y los muestra en la tabla -->
+                        <!-- Equipos recibidos desde HomeController -->
                         <tbody>
                             @forelse($equipos as $equipo)
                             <tr class="border-b border-white/20">
@@ -297,52 +460,68 @@
                             </tr>
                             @endforelse
                         </tbody>
-
                     </table>
-                    <!-- Paginación (máximo 10 items) -->
+
+                    <!-- Paginación -->
                     <div class="mt-6">
                         {{ $equipos->fragment('equipo')->links() }}
                     </div>
+
                 </div>
             </div>
         </section>
 
+
         <!-- CONTACTO -->
-        <section id="contacto" class="min-h-screen pt-28 px-6">
-            <div class="max-w-7xl mx-auto w-full">
+        <section id="contacto" class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip">
 
-                <h2 class="text-4xl uppercase mb-10">Contacto</h2>
+            <!-- Título animado -->
+            <div class="titulo-seccion-contenedor mb-12">
+                <h2 class="titulo-seccion">
+                    Contacto
+                </h2>
+            </div>
 
-                <!-- Mostrar mensaje de éxito cuando el form se envió correctamente -->
+            <div class="max-w-7xl mx-auto px-6 w-full">
+
+                <!-- Mostrar mensaje de éxito -->
                 @if(session('success'))
                 <div class="max-w-md mx-auto mb-6 bg-white text-[var(--principal)] px-4 py-3 rounded">
                     {{ session('success') }}
                 </div>
                 @endif
 
-                <!-- Mostrar aviso general en caso de error -->
+                <!-- Mostrar aviso general de error -->
                 @if($errors->any())
                 <div class="max-w-md mx-auto mb-6 bg-red-100 text-red-700 px-4 py-3 rounded">
                     Revisa los campos del formulario.
                 </div>
                 @endif
 
-                <div class="min-h-[600px] grid grid-cols-1 md:grid-cols-[1fr_1.15fr_1fr] gap-10 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_1.15fr_1fr]
+            gap-10 items-center xl:min-h-[600px]">
 
                     <!-- Texto decorativo izquierda -->
                     <div class="hidden md:flex justify-end">
-                        <span class="text-8xl lg:text-9xl uppercase leading-none tracking-wide ">
+                        <span class="text-8xl lg:text-9xl uppercase leading-none tracking-wide">
                             Let's
                         </span>
                     </div>
 
                     <!-- Formulario -->
-                    <form action="{{ route('contacto.store') }}" method="POST" class="w-full max-w-xl mx-auto bg-white/20 p-10 rounded-lg">
+                    <form
+                        action="{{ route('contacto.store') }}"
+                        method="POST"
+                        class="w-full max-w-xl mx-auto bg-white/20 p-10 rounded-lg">
+
                         @csrf
 
                         <!-- Nombre y apellidos -->
                         <div class="mb-5">
-                            <input type="text" name="nombre" placeholder="Nombre y apellidos"
+                            <input
+                                type="text"
+                                name="nombre"
+                                placeholder="Nombre y apellidos"
                                 value="{{ old('nombre') }}"
                                 class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none">
 
@@ -353,7 +532,10 @@
 
                         <!-- Email -->
                         <div class="mb-5">
-                            <input type="email" name="email" placeholder="Correo electrónico"
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Correo electrónico"
                                 value="{{ old('email') }}"
                                 class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none">
 
@@ -364,7 +546,10 @@
 
                         <!-- Asunto -->
                         <div class="mb-5">
-                            <input type="text" name="asunto" placeholder="Asunto"
+                            <input
+                                type="text"
+                                name="asunto"
+                                placeholder="Asunto"
                                 value="{{ old('asunto') }}"
                                 class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none">
 
@@ -375,7 +560,10 @@
 
                         <!-- Mensaje -->
                         <div class="mb-8">
-                            <textarea name="mensaje" placeholder="Mensaje" rows="4"
+                            <textarea
+                                name="mensaje"
+                                placeholder="Mensaje"
+                                rows="4"
                                 class="w-full bg-transparent border-b border-white py-3 placeholder-white/70 focus:outline-none resize-none">{{ old('mensaje') }}</textarea>
 
                             @error('mensaje')
@@ -383,9 +571,13 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[var(--principal)] transition">
+                        <!-- Botón -->
+                        <button
+                            type="submit"
+                            class="w-full border border-white py-3 uppercase hover:bg-white hover:text-[var(--principal)] transition">
                             Enviar
                         </button>
+
                     </form>
 
                     <!-- Texto decorativo derecha -->
@@ -403,10 +595,17 @@
 
 
     <!-- FOOTER -->
-    <footer class="px-6 py-10 border-t border-white/20 bg-white/10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer class="w-full px-6 py-10 border-t border-white/20 bg-white/10">
 
+        <!-- Contenedor completo del footer -->
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-[0.9fr_1.2fr_1.25fr_1.2fr_0.9fr] items-center gap-y-8">
+
+            <!-- Espacio exterior izquierdo -->
+            <div class="hidden xl:block"></div>
+
+            <!-- Identidad del estudio -->
             <div class="text-center md:text-left">
+
                 <p class="uppercase tracking-widest font-bold">
                     Artesano Studio
                 </p>
@@ -414,26 +613,43 @@
                 <p class="text-sm text-[var(--secundario)] mt-2">
                     Filmmaking, diseño web y producción creativa.
                 </p>
+
             </div>
 
-            <div class="flex flex-wrap justify-center gap-6 uppercase text-sm tracking-widest">
-                <a href="mailto:contacto@artesanostudio.com" class="hover:text-[var(--secundario)]">
+            <!-- Enlaces de contacto y redes -->
+            <div class="flex flex-wrap items-center justify-center gap-6 uppercase text-sm tracking-widest">
+
+                <a
+                    href="mailto:contacto@artesanostudio.com"
+                    class="hover:text-[var(--secundario)] transition-colors">
                     Email
                 </a>
 
-                <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--secundario)]">
+                <a
+                    href="https://wa.me/34600000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--secundario)] transition-colors">
                     WhatsApp
                 </a>
 
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--secundario)]">
+                <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--secundario)] transition-colors">
                     Instagram
                 </a>
 
             </div>
 
+            <!-- Copyright -->
             <div class="text-sm text-[var(--secundario)] text-center md:text-right">
                 © {{ date('Y') }} Artesano Studio
             </div>
+
+            <!-- Espacio exterior derecho -->
+            <div class="hidden xl:block"></div>
 
         </div>
     </footer>
