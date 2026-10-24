@@ -20,10 +20,73 @@
 
 <body class="bg-[var(--principal)] text-white font-sans">
 
-    <header class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/80 backdrop-blur-md">
 
-        <!-- NAVEGADOR -->
-        <nav class="max-w-6xl mx-auto px-6 py-6 grid grid-cols-[1fr_auto_1fr] items-center uppercase text-[15px] tracking-widest">
+    <!-- HEADER -->
+    <header
+        x-data="{ menuAbierto: false }"
+        class="fixed top-0 left-0 w-full z-50 bg-[var(--principal)]/80 backdrop-blur-md">
+
+        <!-- CABECERA MÓVIL / TABLET -->
+        <div class="lg:hidden w-full px-6 py-6">
+            <div class="grid grid-cols-[56px_minmax(0,1fr)_56px] items-center">
+                <!-- Botón burger -->
+                <button
+                    type="button"
+                    @click="menuAbierto = !menuAbierto"
+                    class="w-14 h-14 border-4 border-[var(--tema_oscuro)] flex flex-col items-center justify-center gap-[5px]"
+                    aria-label="Abrir menú"
+                    :aria-expanded="menuAbierto.toString()">
+
+                    <span class="block w-6 h-[2px] bg-[var(--tema_oscuro)]"></span>
+                    <span class="block w-6 h-[2px] bg-[var(--tema_oscuro)]"></span>
+                    <span class="block w-6 h-[2px] bg-[var(--tema_oscuro)]"></span>
+                </button>
+
+                <!-- Logo centrado -->
+                <!-- Logo centrado -->
+                <a href="#inicio"
+                    class="flex justify-center items-center"
+                    aria-label="Volver al inicio">
+
+                    <img
+                        src="{{ asset('img/logo/logo-artesano-nav.png') }}"
+                        alt="Artesano Studio"
+                        class="h-12 sm:h-16 w-auto">
+
+                </a>
+
+                <!-- Espacio simétrico -->
+                <div class="w-14 h-14"></div>
+            </div>
+
+            <!-- Menú desplegable móvil -->
+            <div
+                x-show="menuAbierto"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-2"
+                class="mt-5 bg-white/10 border border-white/20 rounded-lg px-6 py-5"
+                style="display: none;">
+
+                <nav class="flex flex-col gap-4 uppercase tracking-widest text-sm" aria-label="Navegación móvil">
+                    <a @click="menuAbierto = false" href="#inicio" class="hover:text-[var(--secundario)]">Home</a>
+                    <a @click="menuAbierto = false" href="#trabajos" class="hover:text-[var(--secundario)]">Trabajos</a>
+                    <a @click="menuAbierto = false" href="#servicios" class="hover:text-[var(--secundario)]">Servicios</a>
+                    <a @click="menuAbierto = false" href="#estudio" class="hover:text-[var(--secundario)]">El estudio</a>
+                    <a @click="menuAbierto = false" href="#equipo" class="hover:text-[var(--secundario)]">Equipo</a>
+                    <a @click="menuAbierto = false" href="#contacto" class="hover:text-[var(--secundario)]">Contacto</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- CABECERA ESCRITORIO -->
+        <nav
+            class="hidden lg:grid max-w-6xl mx-auto px-6 py-6 grid-cols-[1fr_auto_1fr] items-center uppercase text-[15px] tracking-widest"
+            aria-label="Navegación principal">
+
             <!-- Enlaces izquierda -->
             <div class="flex justify-end gap-7">
                 <a href="#inicio" class="hover:text-[var(--secundario)] whitespace-nowrap">Home</a>
@@ -32,10 +95,10 @@
             </div>
 
             <!-- Logo centrado -->
-            <a href="#inicio" class="flex justify-center mx-12">
+            <a href="#inicio" class="flex justify-center mx-12" aria-label="Volver al inicio">
                 <img
                     src="{{ asset('img/logo/logo-artesano-nav.png') }}"
-                    alt="Logotipo de Artesano Studio"
+                    alt="Artesano Studio"
                     class="h-20 w-auto">
             </a>
 
@@ -49,37 +112,75 @@
         </nav>
     </header>
 
+
     <main>
 
+
         <!-- HOME -->
-        <section id="inicio" class="min-h-screen pt-36 pb-12 px-6 flex items-center">
-            <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-16 items-center">
+        <section
+            id="inicio"
+            class="px-0 sm:px-6
+           pt-36 sm:pt-36
+           pb-10 xl:pb-12
+           xl:min-h-screen
+           flex items-start xl:items-center">
 
-                <img
-                    src="{{ asset('img/home/artesano_hor_home_1.jpg') }}"
-                    alt="Imagen principal de Artesano Studio"
-                    class="w-full h-[600px] object-cover rounded-lg">
+            <!-- Contenedor principal responsive -->
+            <div class="w-full max-w-7xl mx-auto">
 
-                <!-- Contenido de presentación -->
-                <div class="lg:translate-x-10">
-                    <h1 class="text-6xl md:text-[clamp(4.5rem,4.5vw,6.5rem)] uppercase mb-8 leading-[0.95]">
-                        Where silence speaks,<br>Artesano thinks
-                    </h1>
+                <div
+                    class="grid grid-cols-1
+                   xl:grid-cols-[1.05fr_0.95fr]
+                   gap-8 xl:gap-16
+                   items-center">
 
-                    <p class="max-w-md leading-relaxed text-[var(--secundario)]">
-                        Artesano Studio es un estudio creativo que trabaja desde la observación y el detalle.
-                    </p>
+                    <!-- Imagen principal -->
+                    <img
+                        src="{{ asset('img/home/artesano_hor_home_1.jpg') }}"
+                        alt="Imagen principal de Artesano Studio"
+                        class="w-full
+                       h-[240px] sm:h-[380px]
+                       md:h-[460px] xl:h-[600px]
+                       object-cover
+                       rounded-none sm:rounded-lg">
+
+                    <!-- Contenido de presentación -->
+                    <div
+                        class="min-w-0
+                       px-6 sm:px-0
+                       xl:translate-x-4
+                       2xl:translate-x-10">
+
+                        <h1
+                            class="text-[clamp(2.2rem,8vw,6.5rem)]
+                           uppercase leading-[0.95]
+                           mb-6 sm:mb-8">
+                            Where silence<br class="hidden sm:block">
+                            speaks,<br>
+                            Artesano thinks
+                        </h1>
+
+                        <p
+                            class="max-w-md
+                           text-[clamp(1rem,2.8vw,1.2rem)]
+                           leading-relaxed
+                           text-[var(--secundario)]">
+                            Artesano Studio es un estudio creativo que trabaja
+                            desde la observación y el detalle.
+                        </p>
+
+                    </div>
+
                 </div>
-
             </div>
         </section>
 
 
-        <!-- TRABAJOS -->
-        <section id="trabajos" class="py-20 scroll-mt-24 overflow-x-clip">
 
-            <!-- Título animado -->
-            <div class="titulo-seccion-contenedor mb-12">
+        <!-- TRABAJOS -->
+        <section id="trabajos"
+            class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip"> <!-- Título animado -->
+            <div class="titulo-seccion-contenedor mb-8 xl:mb-12">
                 <h2 class="titulo-seccion">
                     Trabajos
                 </h2>
@@ -123,8 +224,8 @@
 
 
         <!-- SERVICIOS -->
-        <section id="servicios" class="py-20 scroll-mt-24 overflow-x-clip">
-
+        <section id="servicios"
+            class="pt-6 pb-6 scroll-mt-32 xl:scroll-mt-24 xl:py-20 overflow-x-clip">
             <!-- Título animado -->
             <div class="titulo-seccion-contenedor mb-12">
                 <h2 class="titulo-seccion">
@@ -137,7 +238,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                     <!-- Filmmaking -->
-                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                    <article class="group relative h-[420px] sm:h-[500px] xl:h-[620px] rounded-lg overflow-hidden bg-white/10">
 
                         <img
                             src="{{ asset('img/servicios/artesano_ver_servicios_video.jpg') }}"
@@ -158,7 +259,7 @@
                     </article>
 
                     <!-- Fotografía -->
-                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                    <article class="group relative h-[420px] sm:h-[500px] xl:h-[620px] rounded-lg overflow-hidden bg-white/10">
 
                         <img
                             src="{{ asset('img/servicios/artesano_ver_servicios_foto.jpg') }}"
@@ -179,7 +280,7 @@
                     </article>
 
                     <!-- Web -->
-                    <article class="group relative h-[620px] rounded-lg overflow-hidden bg-white/10">
+                    <article class="group relative h-[420px] sm:h-[500px] xl:h-[620px] rounded-lg overflow-hidden bg-white/10">
 
                         <img
                             src="{{ asset('img/servicios/artesano_ver_servicios_web.jpg') }}"
@@ -205,7 +306,7 @@
 
 
         <!-- EL ESTUDIO -->
-        <section id="estudio" class="py-20 scroll-mt-24 overflow-x-clip">
+        <section id="estudio" class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip">
 
             <!-- Título animado -->
             <div class="titulo-seccion-contenedor mb-12">
@@ -273,7 +374,7 @@
 
 
         <!-- EQUIPO -->
-        <section id="equipo" class="py-20 scroll-mt-24 overflow-x-clip">
+        <section id="equipo" class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip">
 
             <!-- Título animado -->
             <div class="titulo-seccion-contenedor mb-12">
@@ -372,7 +473,7 @@
 
 
         <!-- CONTACTO -->
-        <section id="contacto" class="py-20 scroll-mt-24 overflow-x-clip">
+        <section id="contacto" class="py-10 xl:py-20 scroll-mt-24 overflow-x-clip">
 
             <!-- Título animado -->
             <div class="titulo-seccion-contenedor mb-12">
@@ -397,7 +498,8 @@
                 </div>
                 @endif
 
-                <div class="min-h-[600px] grid grid-cols-1 md:grid-cols-[1fr_1.15fr_1fr] gap-10 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_1.15fr_1fr]
+            gap-10 items-center xl:min-h-[600px]">
 
                     <!-- Texto decorativo izquierda -->
                     <div class="hidden md:flex justify-end">
@@ -493,64 +595,64 @@
 
 
     <!-- FOOTER -->
-<footer class="w-full px-6 py-10 border-t border-white/20 bg-white/10">
+    <footer class="w-full px-6 py-10 border-t border-white/20 bg-white/10">
 
-    <!-- Contenedor completo del footer -->
-    <div class="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-[0.9fr_1.2fr_1.25fr_1.2fr_0.9fr] items-center gap-y-8">
+        <!-- Contenedor completo del footer -->
+        <div class="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-[0.9fr_1.2fr_1.25fr_1.2fr_0.9fr] items-center gap-y-8">
 
-        <!-- Espacio exterior izquierdo -->
-        <div class="hidden xl:block"></div>
+            <!-- Espacio exterior izquierdo -->
+            <div class="hidden xl:block"></div>
 
-        <!-- Identidad del estudio -->
-        <div class="text-center md:text-left">
+            <!-- Identidad del estudio -->
+            <div class="text-center md:text-left">
 
-            <p class="uppercase tracking-widest font-bold">
-                Artesano Studio
-            </p>
+                <p class="uppercase tracking-widest font-bold">
+                    Artesano Studio
+                </p>
 
-            <p class="text-sm text-[var(--secundario)] mt-2">
-                Filmmaking, diseño web y producción creativa.
-            </p>
+                <p class="text-sm text-[var(--secundario)] mt-2">
+                    Filmmaking, diseño web y producción creativa.
+                </p>
+
+            </div>
+
+            <!-- Enlaces de contacto y redes -->
+            <div class="flex flex-wrap items-center justify-center gap-6 uppercase text-sm tracking-widest">
+
+                <a
+                    href="mailto:contacto@artesanostudio.com"
+                    class="hover:text-[var(--secundario)] transition-colors">
+                    Email
+                </a>
+
+                <a
+                    href="https://wa.me/34600000000"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--secundario)] transition-colors">
+                    WhatsApp
+                </a>
+
+                <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-[var(--secundario)] transition-colors">
+                    Instagram
+                </a>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-sm text-[var(--secundario)] text-center md:text-right">
+                © {{ date('Y') }} Artesano Studio
+            </div>
+
+            <!-- Espacio exterior derecho -->
+            <div class="hidden xl:block"></div>
 
         </div>
-
-        <!-- Enlaces de contacto y redes -->
-        <div class="flex flex-wrap items-center justify-center gap-6 uppercase text-sm tracking-widest">
-
-            <a
-                href="mailto:contacto@artesanostudio.com"
-                class="hover:text-[var(--secundario)] transition-colors">
-                Email
-            </a>
-
-            <a
-                href="https://wa.me/34600000000"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-[var(--secundario)] transition-colors">
-                WhatsApp
-            </a>
-
-            <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-[var(--secundario)] transition-colors">
-                Instagram
-            </a>
-
-        </div>
-
-        <!-- Copyright -->
-        <div class="text-sm text-[var(--secundario)] text-center md:text-right">
-            © {{ date('Y') }} Artesano Studio
-        </div>
-
-        <!-- Espacio exterior derecho -->
-        <div class="hidden xl:block"></div>
-
-    </div>
-</footer>
+    </footer>
 
 </body>
 
