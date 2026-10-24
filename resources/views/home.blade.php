@@ -226,6 +226,7 @@
         <!-- SERVICIOS -->
         <section id="servicios"
             class="pt-6 pb-6 scroll-mt-32 xl:scroll-mt-24 xl:py-20 overflow-x-clip">
+            
             <!-- Título animado -->
             <div class="titulo-seccion-contenedor mb-12">
                 <h2 class="titulo-seccion">
